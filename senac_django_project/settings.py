@@ -44,7 +44,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'senac_django_project.urls'
+ROOT_URLCONF = '*'
 
 TEMPLATES = [
     {
