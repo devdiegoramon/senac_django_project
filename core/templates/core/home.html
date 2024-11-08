@@ -2,9 +2,9 @@
 {% if user.is_authenticated %}
     <h1>Bem Vindo, {{ user.username }}!</h1>
     <p>Email: {{ user.email }}</p>
-    <p>Full Name: {{ user.username }}</p>
-    <a href="{% url 'logout' %}">Logout</a>
+    <p>Nome: {{ user.username }}</p>
+    <a href="{% url 'logout' %}">Sair</a>
 {% else %}
-    <h1>Welcome, convidado!</h1>
-    <p>Please <a href="{% url 'login' %}">login</a> to access more features.</p>
+    <h1>Bem Vindo, convidado!</h1>
+    <p>Por favor <a href="{% url 'login' %}">entre</a> para acessar todas as funcionalidades.</p>
 {% endif %}
