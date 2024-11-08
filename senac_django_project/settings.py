@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Adicione a vírgula aqui
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -41,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'senac_django_project.urls'
 
@@ -110,7 +111,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_DIRS = [os.join(BASE_DIR, "accounts/static")]
+STATIC_DIRS = [os.path.join(BASE_DIR, "accounts/static")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

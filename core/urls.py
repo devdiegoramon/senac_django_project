@@ -1,7 +1,6 @@
-# core/urls.py
 from django.urls import path
-from . import views  # Verifique se as views estão importadas corretamente
+from . import views  # Importa as views do app 'core'
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Rota para a página inicial
+    path('', views.home, name='home'),  # URL para a página inicial, pode ser chamada de 'home'
 ]
