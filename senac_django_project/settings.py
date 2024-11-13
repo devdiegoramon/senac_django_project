@@ -99,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'pt-br'
 
 # TIME_ZONE define o fuso horário do projeto. Aqui, o fuso horário é definido para São Paulo.
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'America/Recife'
 
 # Configurações de internacionalização e fuso horário.
 USE_I18N = True
@@ -109,7 +109,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
-STATICFILES_DIRS = [BASE_DIR / 'accounts' / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'accounts' / 'static',]
+
+# Configurações adicionais do whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # STATIC_ROOT é o diretório onde os arquivos estáticos serão coletados quando você rodar o comando `collectstatic`.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
