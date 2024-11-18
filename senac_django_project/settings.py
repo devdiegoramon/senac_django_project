@@ -56,6 +56,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',  # Processador de contexto para debug
                 'django.template.context_processors.request',  # Processador de contexto para requisições
+                'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',  # Processador de contexto para autenticação
                 'django.contrib.messages.context_processors.messages',  # Processador de contexto para mensagens
             ],
@@ -106,7 +107,7 @@ USE_I18N = True
 USE_TZ = True
 
 # STATIC_URL define a URL pública onde os arquivos estáticos podem ser acessados.
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
 STATICFILES_DIRS = [BASE_DIR / 'accounts' / 'static',]
