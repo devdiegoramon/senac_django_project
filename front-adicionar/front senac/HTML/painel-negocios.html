@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vendas - Pequeno Negócio</title>
+    <link rel="stylesheet" href="/PI.Senac 01/css/pnegocios.css">
+</head>
+<body>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <header>
+        <a href="inicio.html">
+        <div class="logo"><img src="/img/logo.png" alt="Logo"></div>
+     </a>
+        <div class="header-info">
+            <span>Bem-vindo ao sistema de controle de vendas</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Resumo Rápido -->
+        <section class="quick-summary">
+            <div class="summary-item">
+                <strong>Total de Vendas do Dia:</strong> R$ <span id="totalVendas">0,00</span>
+            </div>
+            <div class="summary-item">
+                <strong>Vendas de Hoje:</strong> <span id="vendasHoje">0</span>
+            </div>
+            <div class="summary-item">
+                <strong>Estoque Atual:</strong> <span id="estoqueAtual">50</span> itens
+            </div>
+            <div class="summary-item">
+                <strong>Lucro Estimado:</strong> R$ <span id="lucroEstimado">0,00</span>
+            </div>
+        </section>
+        
+        <!-- Tabela de Vendas -->
+        <section class="sales-table">
+            <h2>Vendas Recentes</h2>
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th>ID Venda</th>
+                        <th>Data</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As vendas serão adicionadas aqui -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Adicionar Nova Venda -->
+        <section class="add-sale">
+            <h2>Adicionar Nova Venda</h2>
+            <form id="addSaleForm">
+                <label for="productName">Produto:</label>
+                <input type="text" id="productName" placeholder="Nome do produto" required>
+                
+                <label for="quantity">Quantidade:</label>
+                <input type="number" id="quantity" placeholder="Quantidade" required>
+                
+                <label for="unitPrice">Preço Unitário:</label>
+                <input type="number" id="unitPrice" placeholder="Preço Unitário" required>
+                
+                <button type="submit">Adicionar Venda</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Controle de Vendas - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
