@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx1rqc@pz*4oj1*in4aa3@o67g6(gg)o7')
 
 # Em modo de produção, a variável DEBUG deve ser definida como False para não expor informações sensíveis.
-DEBUG = False
+DEBUG = True
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
 ALLOWED_HOSTS = ['*']
@@ -18,7 +18,7 @@ LOGIN_URL = '/accounts/login/'  # URL para a página de login
 LOGIN_REDIRECT_URL = '/home/'  # Após o login, o usuário será redirecionado para esta página
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Após o logout, o usuário será redirecionado para esta página
 
-# INSTALLED_APPS lista todos os aplicativos Django e os personalizados que você está usando no seu projeto. 
+# INSTALLED_APPS lista todos os aplicativos Django e os personalizados que você está usando no seu projeto.
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',  # WhiteNoise serve arquivos estáticos
     'django.contrib.admin',  # Admin do Django
