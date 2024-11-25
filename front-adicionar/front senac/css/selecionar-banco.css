@@ -1,0 +1,162 @@
+/* Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Logo */
+.logo img {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+/* Container Principal */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Título do Formulário */
+h1 {
+    color: #2a9d8f;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    animation: slideInFromTop 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Estilo dos Grupos de Formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Campos de Texto */
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus nos Campos */
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #2a9d8f;
+    background-color: #eaf5f3;
+    outline: none;
+}
+
+/* Campo para Banco "Outro" */
+#outroBanco {
+    display: none;
+}
+
+#outroBancoInput {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#outroBancoInput:focus {
+    border-color: #2a9d8f;
+    background-color: #eaf5f3;
+    outline: none;
+}
+
+/* Botões */
+button {
+    background-color: #2a9d8f;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #264653;
+}
+
+button:active {
+    background-color: #1b3a34;
+}
+
+.voltar {
+    background-color: #ddd;
+    color: #333;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.voltar:hover {
+    background-color: #ccc;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
