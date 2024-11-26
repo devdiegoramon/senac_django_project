@@ -1,16 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Vendas - Pequeno Negócio</title>
-    <link rel="stylesheet" href="/PI.Senac 01/css/pnegocios.css">
+    <link rel="stylesheet" href="{% static 'core/css/painel-negocios.css' %}"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <link rel="stylesheet" href="/css/estilo.css">
     <header>
-        <a href="inicio.html">
-        <div class="logo"><img src="/img/logo.png" alt="Logo"></div>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'core/img/logo.png' %}" alt="Logo">
      </a>
         <div class="header-info">
             <span>Bem-vindo ao sistema de controle de vendas</span>
@@ -77,6 +79,6 @@
         <p>© 2024 Controle de Vendas - Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="{% static 'core/scripts/inicio.js' %}"></script>
 </body>
 </html>
