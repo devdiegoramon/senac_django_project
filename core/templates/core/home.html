@@ -6,15 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal</title>
-    <!-- Link para o CSS dentro da pasta 'front-adicionar/front senac/static/css' -->
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">  <!-- Caminho correto para o arquivo CSS -->
+    <!-- Link para o CSS dentro da pasta 'core/css' -->
+    <link rel="stylesheet" href="{% static 'core/css/home.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="container">
         <div class="title">
             <a href="{% url 'home' %}">
-                <img src="{% static 'img/logo.png' %}" alt="Logo">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo">
             </a>
         </div>
         <nav class="nav-bar">
@@ -58,6 +58,6 @@
         <p>&copy; 2024 MeuSite. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="{% static 'scripts/inicio.js' %}"></script>  <!-- Se houver algum script JS -->
+    <script src="{% static 'core/scripts/inicio.js' %}"></script>  <!-- Caminho correto para o JS -->
 </body>
 </html>
