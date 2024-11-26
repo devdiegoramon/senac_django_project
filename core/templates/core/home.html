@@ -1,10 +1,63 @@
-<!-- home.html -->
-{% if user.is_authenticated %}
-    <h1>Bem Vindo, {{ user.username }}!</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Nome: {{ user.username }}</p>
-    <a href="{% url 'logout' %}">Sair</a>
-{% else %}
-    <h1>Bem Vindo, convidado!</h1>
-    <p>Por favor <a href="{% url 'login' %}">entre</a> para acessar todas as funcionalidades.</p>
-{% endif %}
+{% load static %}  <!-- Carrega os arquivos estáticos -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <!-- Link para o CSS dentro da pasta 'front-adicionar/front senac/static/css' -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">  <!-- Caminho correto para o arquivo CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="container">
+        <div class="title">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Logo">
+            </a>
+        </div>
+        <nav class="nav-bar">
+            <ul class="list-menu">
+                <li><a href="{% url 'home' %}">Início</a></li>
+                <li><a href="{% url 'financas' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'pnegocios' %}">Pequenos Negócios</a></li>
+                <li><a href="{% url 'saiba-mais' %}">Saiba Mais</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="anuncio">
+        <p>sla</p>
+    </div>
+    
+    <main>
+        <section id="inicio">
+            <h2>Início</h2>
+            <p>Thiago Tanga.</p>
+        </section>
+
+        <section id="financas">
+            <h2>Finanças Pessoais</h2>
+            <p>Aprenda como gerenciar suas finanças pessoais de forma simples e eficiente.</p>
+        </section>
+
+        <section id="negocios">
+            <h2>Pequenos Negócios</h2>
+            <p>Dicas e soluções para empreendedores iniciantes e donos de pequenos negócios.</p>
+        </section>
+
+        <section id="saiba-mais">
+            <h2>Saiba Mais</h2>
+            <p>Explore nosso conteúdo exclusivo sobre como melhorar sua vida financeira e seus negócios.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MeuSite. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="{% static 'scripts/inicio.js' %}"></script>  <!-- Se houver algum script JS -->
+</body>
+</html>

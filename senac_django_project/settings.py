@@ -110,12 +110,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
-STATICFILES_DIRS = [BASE_DIR / 'accounts' / 'static',]
+STATICFILES_DIRS = [
+    BASE_DIR / 'front-adicionar/front senac/static',  # Caminho para o diretório de arquivos estáticos
+]
 
-# Configurações adicionais do whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# STATIC_ROOT é o diretório onde os arquivos estáticos serão coletados quando você rodar o comando `collectstatic`.
+# Configuração para servir os arquivos estáticos em produção
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Configurações para arquivos de mídia (arquivos carregados pelos usuários).
