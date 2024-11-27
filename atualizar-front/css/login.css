@@ -1,0 +1,212 @@
+/*Inicio cadastros*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+.container{
+    display: flex;
+}
+
+.volte{
+    font-size: 12px;
+    float: right;
+    padding-bottom: 10px;
+}
+
+body {
+    background-image: url(../img/graphic-2d-colorful-wallpaper-with-grainy-gradients.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  /*  background-color: #0360FC;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    color: #eeeeee;
+    background-attachment: fixed;
+}
+
+.LOGIN1{
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.LOGIN1{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1200px;
+}
+
+
+img{
+    width: 20px;
+    display: flex;
+    display: inline-flex;
+    vertical-align: sub;
+    margin-right: 20px;
+}
+
+@keyframes go-back {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.quadrado {
+    animation: go-back 3s;
+}
+
+/* Estilo do Formulário */
+.Formulario {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+
+.Formulario div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="date"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+input[type="password"] {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+div label {
+    font-size: 1em;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+div label:hover {
+    color: #fff;
+}
+
+.logos{
+    padding: 50px;
+    display: flex;
+    gap: 40px;
+    color: #fff;
+}
+
+.logos label {
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #fff;
+    border-width: 3px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    transition: transform 1s ease; 
+    gap: 40px;
+}
+
+a{
+    color: #fff;
+    margin-right: 10px;
+}
+
+.logos label:hover {
+    transform: scale(1.1); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

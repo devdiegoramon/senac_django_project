@@ -1,0 +1,113 @@
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+/* Formulário de Feedback */
+#feedback-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+#feedback-wrapper:hover #feedback-form-container {
+    display: block;
+}
+
+#feedback-form-container {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    max-width: 90%;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+#feedback-form-container h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+#feedback-text {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+#submit-feedback,
+#close-feedback {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#submit-feedback:hover {
+    background-color: #218838;
+}
+
+#close-feedback {
+    background-color: #dc3545;
+}
+
+#close-feedback:hover {
+    background-color: #c82333;
+}
+
+/* Animações e transições */
+#feedback-form-container.show {
+    display: block;
+    opacity: 1;
+}
+
+#feedback-form-container.hide {
+    display: none;
+    opacity: 0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    #feedback-form-container {
+        bottom: 70px;
+        width: 90%;
+    }
+}
