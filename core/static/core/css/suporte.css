@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.container {
+    background-image: url(../img/graphic-2d-colorful-wallpaper-with-grainy-gradients.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px;
+    flex-wrap: wrap; /* Adicionando wrap para garantir que os itens podem quebrar para uma nova linha em telas menores */
+}
+
+.nav-bar {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-grow: 1; 
+}
+.list-menu a{
+    border-radius: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 150%;
+
+}
+.list-menu a:hover{
+    background-color: #2fa866;
+}
+
+.user-menu {
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    text-align: left;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #000;
+}
+
+.list-menu {
+    display: flex; 
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+}
+
+.list-menu li {
+    display: inline-block;
+    margin-right: 20px; 
+}
+
+.list-menu a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.list-menu a:hover {
+    transform: translateY(-10px); 
+}
+
+a {
+    color: #000;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+.dropdown {
+    display: none; 
+    list-style: none;
+    position: absolute;
+    background: #fff;
+    border: 10px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.User-Menu {
+    position: relative;
+}
+
+.User-Menu {
+    position: absolute;
+    right: 30px;
+    top: 20px; 
+}
+
+i {
+    color: #ffffff;
+}
+
+.User-Menu ul.dropdown {
+    display: none; 
+    gap: 40px;
+    position: absolute;
+    left: -200px;
+    top: 100%; 
+    background-color: #fff;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px; 
+    padding: 10px;
+    list-style: none;
+    text-align: center;
+    justify-content: center;
+    transition: transform 1s ease; 
+}
+
+.User-Menu a {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out; 
+}
+
+.User-Menu a:hover {
+    transform: scale(1.1); 
+}
+
+
+/* Estilo de Links Gerais */
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Formulário de Contato */
+#contatar-suporte {
+    padding: 40px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#contatar-suporte h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007BFF;
+    font-size: 24px;
+}
+
+#form-suporte {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-suporte label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#form-suporte input,
+#form-suporte textarea {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#form-suporte input[type="text"],
+#form-suporte input[type="email"] {
+    width: 100%;
+}
+
+#form-suporte textarea {
+    width: 100%;
+    height: 150px;
+}
+
+#form-suporte button {
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#form-suporte button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .list-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .list-menu li {
+        margin: 10px 0;
+    }
+
+    .User-Menu {
+        position: static;
+        margin-top: 10px;
+    }
+
+    #contatar-suporte {
+        padding: 20px;
+    }
+}
+/* Estilos principais do rodapé */
+footer {
+    background-color: #2C3E50;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .container-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Estilos para as colunas */
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-col h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.footer-col p, .footer-col a {
+    color: #BDC3C7;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.footer-col a:hover {
+    color: #3498db;
+}
+
+/* Estilo para os ícones de redes sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #3498db;
+}
+
+/* Estilo para o rodapé de copyright */
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #BDC3C7;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}

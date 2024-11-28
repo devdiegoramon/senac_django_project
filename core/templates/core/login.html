@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoreCah</title>
-    <link rel="stylesheet" href="{% static 'core/css/login.css' %}"> 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
 <body>
     <h1>Acessar</h1>
     <div class="Formulario">
@@ -14,7 +13,8 @@
         <input type="email" id="email" name="email" required>
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required>
-        <a class="volte" href="cadastro.html">Volte pro Cadastro</a>
+        <a class="volte" href="/HTML/recsenha.html">Esqueci minha senha.</a>
+        <a class="volte" href="/HTML/inicio.html">Voltar.</a>
         <button type="submit">Entrar</button>
     </div>
     <main class="quadrado">
@@ -27,12 +27,13 @@
             <label for="logo1" class="logo2">
                 <!-- <i class="fa-brands fa-facebook"></i> -->
                  <img src="/img/icons8-facebook-novo-48.png" alt="">
-                <a href="https://www.linkedin.com/signup/cold-join">Entrar com Facebook</a>
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">Entrar com Facebook</a>
             </label>
         </div>
     </main>
     
         </label>
     </div>
+  
 </body>
 </html>
