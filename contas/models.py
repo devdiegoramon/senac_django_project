@@ -2,14 +2,15 @@ from django.db import models
 from datetime import datetime
 
 class Usuario(models.Model):
-    email = models.EmailField(unique=True)  # Adicionando unique=True para garantir que não haja emails duplicados
+    email = models.EmailField(unique=True)
     nome = models.CharField(max_length=150)
-    cpf = models.CharField(max_length=11, unique=True)  # Adicionando unique=True para garantir CPFs únicos
+    cpf = models.CharField(max_length=11, unique=True)
     data_nascimento = models.DateField(default=datetime.today)
-    senha = models.CharField(max_length=128)  # Definindo um tamanho razoável para a senha
+    senha = models.CharField(max_length=128)
 
     def __str__(self):
         return self.nome
+
 
 class Financas_pessoas(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='financas')
@@ -22,6 +23,7 @@ class Financas_pessoas(models.Model):
 
     def __str__(self):
         return f"Finanças de {self.usuario.nome}"
+
 
 class Informacoes_bancarias(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='informacoes_bancarias')

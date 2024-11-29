@@ -1,20 +1,66 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoreCash</title>
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
 </head>
+
 <body>
-    <h2>Login</h2>
+    <h1>Acessar</h1>
+    <div class="Formulario">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="User">
+                <label for="{{ form.email.id_for_label }}">Email/Usuario:</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
-    <form method="post">
-        {% csrf_token %}
-        
-        <!-- Exibição do formulário -->
-        {{ form.as_p }}
-        
-        <button type="submit">Login</button>
-    </form>
+            <div class="Password">
+                <label for="{{ form.senha.id_for_label }}">Senha:</label>
+                {{ form.senha }}
+                {% if form.senha.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.senha.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
-    <p>Não tem uma conta? <a href="{% url 'signup' %}">Cadastre-se aqui</a></p>
+            <a class="volte" href="{% url 'recsenha' %}">Esqueci minha senha.</a>
+            <a class="volte" href="{% url 'inicio' %}">Voltar.</a>  <!-- link para página inicial -->
+            
+            <div class="button">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+
+    <main class="quadrado">
+        <div class="logos">
+            <label for="logo" class="logo1">
+                <img src="{% static 'core/img/icons8-google-logo-48.png' %}" alt="">
+                <a href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=AcMMx-fSIoU1OPoVBVU9MUl4b8BYp8siWhKezRLVBGwHigeikIuXCfR0jIl9l4nmh7BgX43oQWwSbg&ddm=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Entrar com Google</a>
+            </label>
+            <label for="logo1" class="logo2">
+                <img src="{% static 'core/img/icons8-facebook-novo-48.png' %}" alt="">
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">Entrar com Facebook</a>
+            </label>
+        </div>
+    </main>
 </body>
+
 </html>

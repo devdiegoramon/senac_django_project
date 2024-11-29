@@ -13,4 +13,5 @@ urlpatterns = [
     path('inicio/', inicio, name='inicio'),  # A URL para a página inicial
     path('accounts/', include('contas.urls')),  # Certifique-se de que 'contas' é o nome do seu app
     path('core/', include('core.urls')),  # Incluir as URLs do app 'core'
+    path('contas/', include('contas.urls')),  # Incluir as URLs do app 'core'
 ]
