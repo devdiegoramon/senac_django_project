@@ -1,11 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoreCah</title>
-    <link rel="stylesheet" href="/PI.Senac 01/css/estilo.css">
+    <title>MoreCash</title>
+    <!-- Usando a tag static para referenciar o arquivo CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
 </head>
+
 <body>
     <h1>Acessar</h1>
     <div class="Formulario">
@@ -13,25 +18,25 @@
         <input type="email" id="email" name="email" required>
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required>
-        <a class="volte" href="cadastro.html">Volte pro Cadastro</a>
+        <!-- Ajustando os links para usar as URLs corretas -->
+        <a class="volte" href="{% url 'recsenha' %}">Esqueci minha senha.</a>
+        <a class="volte" href="{% url 'inicio' %}">Voltar.</a>  <!-- link para página inicial -->
         <button type="submit">Entrar</button>
     </div>
     <main class="quadrado">
         <div class="logos">
             <label for="logo" class="logo1">
-                <!-- <i class="fa-brands fa-google"></i> -->
-                 <img  src="/img/icons8-google-logo-48.png" alt="">
+                <!-- Usando a tag static para referenciar a imagem do Google -->
+                <img src="{% static 'core/img/icons8-google-logo-48.png' %}" alt="">
                 <a href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=AcMMx-fSIoU1OPoVBVU9MUl4b8BYp8siWhKezRLVBGwHigeikIuXCfR0jIl9l4nmh7BgX43oQWwSbg&ddm=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Entrar com Google</a>
             </label>
             <label for="logo1" class="logo2">
-                <!-- <i class="fa-brands fa-facebook"></i> -->
-                 <img src="/img/icons8-facebook-novo-48.png" alt="">
-                <a href="https://www.linkedin.com/signup/cold-join">Entrar com Facebook</a>
+                <!-- Usando a tag static para referenciar a imagem do Facebook -->
+                <img src="{% static 'core/img/icons8-facebook-novo-48.png' %}" alt="">
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">Entrar com Facebook</a>
             </label>
         </div>
     </main>
-    
-        </label>
-    </div>
 </body>
+
 </html>

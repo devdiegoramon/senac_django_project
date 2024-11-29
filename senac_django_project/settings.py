@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx1rqc@pz*4oj1*in4aa3@o67g6(gg)o7')
 
 # Em modo de produção, a variável DEBUG deve ser definida como False para não expor informações sensíveis.
-DEBUG = True
+DEBUG = False
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
 ALLOWED_HOSTS = ['*']
@@ -33,15 +33,18 @@ INSTALLED_APPS = [
 
 # MIDDLEWARE define os componentes de middleware usados no projeto. 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',  # Middleware de segurança
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Middleware para servir arquivos estáticos em produção
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Middleware de sessões
-    'django.middleware.common.CommonMiddleware',  # Middleware para operações comuns
-    'django.middleware.csrf.CsrfViewMiddleware',  # Middleware de proteção contra CSRF
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Middleware de autenticação
-    'django.contrib.messages.middleware.MessageMiddleware',  # Middleware de mensagens
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',  # Proteção contra clickjacking
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise precisa estar logo após o SecurityMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # ROOT_URLCONF especifica o arquivo principal de URLs que mapeia as requisições HTTP para as views.
 ROOT_URLCONF = 'senac_django_project.urls'
@@ -110,9 +113,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
-STATICFILES_DIRS = [
-    BASE_DIR / 'front-adicionar/front senac/static',  # Caminho para o diretório de arquivos estáticos
-]
 
 # Configuração para servir os arquivos estáticos em produção
 STATIC_ROOT = BASE_DIR / 'staticfiles'
