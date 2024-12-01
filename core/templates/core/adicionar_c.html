@@ -50,7 +50,9 @@
         <form id="formulario" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Cadastrar Conta</button>
+            <a href="{% url 'signup' %}">
+            <button type="button">Cadastrar Conta</button>
+            </a>
             <a href="{% url 'inicio2' %}">
                 <button type="button" class="voltar-btn">Voltar</button>
             </a>

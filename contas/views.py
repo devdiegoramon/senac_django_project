@@ -12,7 +12,7 @@ def signup(request):
             user = form.save()  # Salva o novo usuário
             login(request, user)  # Faz login automaticamente após o cadastro
             messages.success(request, 'Conta criada com sucesso!')
-            return redirect('incio2')  # Redireciona para a página inicial ou onde for necessário
+            return redirect('inicio2')  # Redireciona para a página inicial ou onde for necessário
         else:
             messages.error(request, 'Por favor, corrija os erros abaixo.')
             print(form.errors)  # Verifique no terminal os erros do formulário
