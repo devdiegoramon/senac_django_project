@@ -37,7 +37,7 @@
                     <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
+                    <li class="user-men"><a href="{% url 'altsenha' %}">Esqueci Minha Senha</a></li>
                     <br>
                     <hr>
                     <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
@@ -106,35 +106,50 @@
             <button id="submit-feedback">Enviar</button>
             <button id="close-feedback">Fechar</button>
         </div>
-    </div>
+    </div>  
 
-    <script>
-        document.getElementById("financeForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Impede o envio do formulário
-
-            // Captura os valores dos campos
-            var income = document.getElementById("income").value;
-            var fixedExpenses = document.getElementById("fixedExpenses").value;
-            var variableExpenses = document.getElementById("variableExpenses").value;
-            var investments = document.getElementById("investments").value;
-            var debts = document.getElementById("debts").value;
-            var financialGoal = document.getElementById("financialGoal").value;
-
-            // Atualiza os elementos de resumo com os valores inseridos
-            document.getElementById("rendaMensal").textContent = `R$ ${parseFloat(income).toFixed(2)}`;
-            document.getElementById("gastosFixos").textContent = `R$ ${parseFloat(fixedExpenses).toFixed(2)}`;
-            document.getElementById("gastosVariaveis").textContent = `R$ ${parseFloat(variableExpenses).toFixed(2)}`;
-            document.getElementById("investimentos").textContent = `R$ ${parseFloat(investments).toFixed(2)}`;
-            document.getElementById("dividas").textContent = `R$ ${parseFloat(debts).toFixed(2)}`;
-            document.getElementById("objetivoFinanceiro").textContent = financialGoal || "Defina um objetivo";
-        });
-    </script>
-
+    <!-- Rodapé -->
     <footer>
-        <!-- Footer code as in the original -->
-    </footer>
+        <div class="container-info">
+            <div class="footer-row">
+                <!-- Coluna 1: Sobre a Empresa -->
+                <div class="footer-col">
+                    <h3>Sobre</h3>
+                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                </div>
 
+                <!-- Coluna 2: Links rápidos -->
+                <div class="footer-col">
+                    <h3>Links rápidos</h3>
+                    <a href="{% url 'inicio' %}">Home</a>
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Contato</a>
+                </div>
+
+                <!-- Coluna 3: Contato -->
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <p>Email: morecash270@gmail.com</p>
+                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+                </div>
+            </div>
+
+            <!-- Redes sociais -->
+            <div class="social-icons">
+                <a href="#" target="_blank">🔗</a>
+                <a href="#" target="_blank">📘</a>
+                <a href="#" target="_blank">🐦</a>
+                <a href="#" target="_blank">📸</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
 </body>
-
 </html>
