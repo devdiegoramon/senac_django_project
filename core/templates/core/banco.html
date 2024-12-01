@@ -4,41 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Bancário</title>
-    <link rel="stylesheet" href="/css/banco.css"> 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/banco.css' %}"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="container">
         <div class="title">
-            <a href="inicio2.html">
-                <img src="/img/logo.png" alt="Logo">
+            <a href="{% url 'inicio' %}">
+                <!-- Use Django static for images -->
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo">
             </a>
         </div>
         <nav class="nav-bar">
             <ul class="list-menu">
-                <li><a href="/HTML/inicio2.html">Início</a></li>
-                <li><a href="/HTML/controle.f2.html">Finanças Pessoais</a></li>
-                <li><a href="/HTML/pnegocios2.html">Pequenos Negócios</a></li>
+                <li><a href="{% url 'inicio' %}">Início</a></li>
+                <li><a href="{% url 'controle.f' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'pnegocios' %}">Pequenos Negócios</a></li>
             </ul>
             <li class="User-Menu">
                 <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
                 <ul class="dropdown" id="user-dropdown">
-                    <li class="user-men"><a href="perfil.html">Editar Perfil</a></li>
+                    <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="adionar-c.html">Adicionar Conta</a></li>
+                    <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="banco.html">Configurações do Banco</a></li>
+                    <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="/HTML/recsenha.html">Esqueci Minha Senha</a></li>
+                    <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="/HTML/suporte.html">Suporte</a></li>
+                    <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
                     <br>
                     <hr>
-                    <li class="user-men"><a href="#sair">Sair</a></li>
+                    <li class="user-men"><a href="{% url 'inicio' %}">Sair</a></li>
                 </ul>
             </li>
         </nav>
@@ -117,7 +119,7 @@
 
             <!-- Botões -->
             <button type="button" id="enviarBtn">Enviar</button>
-            <a href="inicio.html">
+            <a href="{% url 'inicio2' %}">
                 <button type="button" class="voltar">Voltar para a Home</button>
             </a>
         </form>
@@ -144,7 +146,7 @@
         </div>
     </div>
 
-    <script src="/scripts/banco.js"></script>
+    <script src="{% static 'scripts/banco.js' %}"></script>
 
     <script>
         // Função para mostrar ou esconder o campo de "Outro Banco"
@@ -158,116 +160,22 @@
             }
         }
 
-        // Função para exibir os resultados quando o botão "Enviar" for clicado
         document.getElementById('enviarBtn').addEventListener('click', function() {
-            // Captura os valores dos campos
+            // Exibir o resultado
             const banco = document.getElementById('banco').value;
-            const outroBanco = document.getElementById('outroBancoInput').value;
             const agencia = document.getElementById('agencia').value;
             const conta = document.getElementById('conta').value;
             const autenticacao = document.getElementById('autenticacao').value;
+            const outroBanco = document.getElementById('outroBancoInput').value;
 
-            // Definir o nome do banco com base na seleção
-            let nomeBanco = banco;
-            if (banco === '999' && outroBanco) {
-                nomeBanco = outroBanco; // Se "Outro Banco" for selecionado, usar o valor digitado
-            } else {
-                // Definir os nomes dos bancos predefinidos
-                const bancos = {
-                    '001': 'Banco do Brasil',
-                    '033': 'Santander',
-                    '104': 'Caixa Econômica Federal',
-                    '237': 'Bradesco',
-                    '341': 'Itaú',
-                    '745': 'Banco Citibank',
-                    '748': 'Sicredi',
-                    '399': 'HSBC',
-                    '004': 'Banco de Brasília (BRB)',
-                    '634': 'Banco Safra',
-                    '003': 'Banco da Amazônia',
-                    '007': 'Banrisul',
-                    '012': 'Banpará',
-                    '022': 'Banco do Nordeste do Brasil (BNB)',
-                    '041': 'Banco do Estado do Rio de Janeiro (BERJ)',
-                    '077': 'Banco Inter',
-                    '249': 'Banco Modal (ModalMais)',
-                    '260': 'Nubank',
-                    '334': 'Banco Neon',
-                    '357': 'C6 Bank',
-                    '021': 'Banco Original',
-                    '323': 'Mercado Pago',
-                    '332': 'Ame Digital',
-                    '383': 'PagBank',
-                    '142': 'PicPay',
-                    '290': 'BS2',
-                    '336': 'Banco Digio',
-                    '364': 'Gerencianet',
-                    '380': 'Banco Cora',
-                    '381': 'Banco Next',
-                    '382': 'Banco Pan',
-                    '746': 'Banco Modal',
-                    '756': 'Sicoob',
-                    '389': 'Banco Mercantil do Brasil',
-                    '399': 'HSBC Brasil'
-                };
+            document.getElementById('resultadoBanco').textContent = banco;
+            document.getElementById('resultadoOutroBanco').textContent = outroBanco || 'Não especificado';
+            document.getElementById('resultadoAgencia').textContent = agencia;
+            document.getElementById('resultadoConta').textContent = conta;
+            document.getElementById('resultadoAutenticacao').textContent = autenticacao;
 
-                // Atribui o nome do banco predefinido, se disponível
-                nomeBanco = bancos[banco] || nomeBanco;
-            }
-
-            // Exibe os resultados
-            document.getElementById('resultadoBanco').textContent = nomeBanco;
-            document.getElementById('resultadoOutroBanco').textContent = outroBanco ? outroBanco : 'Nenhum';
-            document.getElementById('resultadoAgencia').textContent = agencia ? agencia : 'Nenhum';
-            document.getElementById('resultadoConta').textContent = conta ? conta : 'Nenhum';
-            document.getElementById('resultadoAutenticacao').textContent = autenticacao ? autenticacao : 'Nenhum';
-
-            // Exibe a seção de resultados
             document.getElementById('resultado').style.display = 'block';
         });
     </script>
-    <!-- Rodapé -->
-<footer>
-    <div class="container-info">
-        <div class="footer-row">
-            <!-- Coluna 1: Sobre a Empresa -->
-            <div class="footer-col">
-                <h3>Sobre</h3>
-                <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
-            </div>
-
-            <!-- Coluna 2: Links rápidos -->
-            <div class="footer-col">
-                <h3>Links rápidos</h3>
-                <a href="">Home</a>
-                <a href="">Sobre Nós</a>
-                <a href="">Serviços</a>
-                <a href="">Contato</a>
-            </div>
-
-            <!-- Coluna 3: Contato -->
-            <div class="footer-col">
-                <h3>Contato</h3>
-                <p>Email: morecash270@gmail.com</p>
-                <p>Telefone: (81) 90505-8282</p>
-                <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
-            </div>
-        </div>
-
-        <!-- Redes sociais -->
-        <div class="social-icons">
-            <a href="#" target="_blank">🔗</a>
-            <a href="#" target="_blank">📘</a>
-            <a href="#" target="_blank">🐦</a>
-            <a href="#" target="_blank">📸</a>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-        </div>
-    </div>
-</footer>
-    <script src="/scripts/inicio.js"></script>
 </body>
 </html>

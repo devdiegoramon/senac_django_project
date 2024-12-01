@@ -21,8 +21,8 @@
     <nav class="nav-bar">
         <ul class="list-menu">
             <li><a href="{% url 'inicio2' %}">Início</a></li>
-            <li><a href="{% url 'controle_financas' %}">Finanças Pessoais</a></li>
-            <li><a href="{% url 'pequenos_negocios' %}">Pequenos Negócios</a></li>
+            <li><a href="{% url 'controle.f' %}">Finanças Pessoais</a></li>
+            <li><a href="{% url 'pnegocios' %}">Pequenos Negócios</a></li>
         </ul>
 
         <li class="User-Menu">
@@ -31,13 +31,13 @@
                 <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'adicionar_conta' %}">Adicionar Conta</a></li>
+                <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'config_banco' %}">Configurações do Banco</a></li>
+                <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'rec_senha' %}">Esqueci Minha Senha</a></li>
+                <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
                 <br>
                 <hr>
                 <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
@@ -136,9 +136,9 @@
             <div class="footer-col">
                 <h3>Links rápidos</h3>
                 <a href="{% url 'inicio' %}">Home</a>
-                <a href="{% url 'sobre_nos' %}">Sobre Nós</a>
-                <a href="{% url 'servicos' %}">Serviços</a>
-                <a href="{% url 'contato' %}">Contato</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Serviços</a>
+                <a href="#">Contato</a>
             </div>
 
             <!-- Coluna 3: Contato -->

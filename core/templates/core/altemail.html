@@ -4,73 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alteração de email</title>
-    <link rel="stylesheet" href="/css/alteraemail.css"> 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/alteraemail.css' %}"> <!-- Link para o CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    
-   
-   
     <header>
         <div class="container">
-            <h1>Alterar o Email </h1>
+            <h1>Alterar o Email</h1>
         </div>
     </header>
-
     <main>
         <section id="alterar.email">
-            <h2></h2>
-            <form id="form-esqueci-senha">
-                <label for="email-recuperacao">Informe Seu Email/Celular:</label>
-                <input type="email" id="email-alteracao" placeholder="Digite Seu Email/Celular" required>
+            <form id="form-esqueci-senha" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <button type="submit">Enviar link para Alteração</button>
             </form>
         </section>
     </main>
-
     <!-- Rodapé -->
-<footer>
-    <div class="container-info">
-        <div class="footer-row">
-            <!-- Coluna 1: Sobre a Empresa -->
-            <div class="footer-col">
-                <h3>Sobre</h3>
-                <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+    <footer>
+        <div class="container-info">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>Sobre</h3>
+                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links rápidos</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Contato</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <p>Email: morecash270@gmail.com</p>
+                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+                </div>
             </div>
-
-            <!-- Coluna 2: Links rápidos -->
-            <div class="footer-col">
-                <h3>Links rápidos</h3>
-                <a href="">Home</a>
-                <a href="">Sobre Nós</a>
-                <a href="">Serviços</a>
-                <a href="">Contato</a>
+            <div class="social-icons">
+                <a href="#" target="_blank">🔗</a>
+                <a href="#" target="_blank">📘</a>
+                <a href="#" target="_blank">🐦</a>
+                <a href="#" target="_blank">📸</a>
             </div>
-
-            <!-- Coluna 3: Contato -->
-            <div class="footer-col">
-                <h3>Contato</h3>
-                <p>Email: morecash270@gmail.com</p>
-                <p>Telefone: (81) 90505-8282</p>
-                <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
             </div>
         </div>
-
-        <!-- Redes sociais -->
-        <div class="social-icons">
-            <a href="#" target="_blank">🔗</a>
-            <a href="#" target="_blank">📘</a>
-            <a href="#" target="_blank">🐦</a>
-            <a href="#" target="_blank">📸</a>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-        </div>
-    </div>
-</footer>
- 
-    <script src="script.js"></script>
+    </footer>
+    <script src="{% static 'scripts/inicio.js' %}"></script>
 </body>
 </html>
