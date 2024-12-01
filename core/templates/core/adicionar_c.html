@@ -24,17 +24,22 @@
             <li class="User-Menu">
                 <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
                 <ul class="dropdown" id="user-dropdown">
-                    <li class="user-men"><a href="#">Editar Perfil</a></li>
-                    <br><hr>
-                    <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
-                    <br><hr>
-                    <li class="user-men"><a href="#">Configurações do Banco</a></li>
-                    <br><hr>
-                    <li class="user-men"><a href="#">Esqueci Minha Senha</a></li>
-                    <br><hr>
-                    <li class="user-men"><a href="#">Suporte</a></li>
+                    <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
                     <br>
                     <hr>
+                    <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'altsenha' %}">Esqueci Minha Senha</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="#sair">Sair</a></li>
                     <li class="user-men"><a href="#sair">Sair</a></li>
                 </ul>
             </li>
@@ -87,6 +92,6 @@
         </div>
     </footer>
 
-    <script src="{% static 'scripts/inicio.js' %}"></script>
+    <script src="{% static 'core/scripts/inicio.js' %}"></script>
 </body>
 </html>
