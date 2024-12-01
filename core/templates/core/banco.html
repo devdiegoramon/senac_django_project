@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Bancário</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'core/css/banco.css' %}"> 
+    <link rel="stylesheet" href="{% static 'core/css/banco.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="container">
         <div class="title">
             <a href="{% url 'inicio' %}">
-                <!-- Use Django static for images -->
                 <img src="{% static 'core/img/logo.png' %}" alt="Logo">
             </a>
         </div>
@@ -45,7 +44,7 @@
             </li>
         </nav>
     </header>
-    
+
     <div class="conteiner">
         <h1>Informações Bancárias</h1>
 
@@ -55,48 +54,47 @@
                 <label for="banco">Selecione o Banco:</label>
                 <select id="banco" name="banco" onchange="mostrarOutroBanco()">
                     <option value="">Escolha o Banco</option>
-                    <option value="001">Banco do Brasil</option>
-                    <option value="033">Santander</option>
-                    <option value="104">Caixa Econômica Federal</option>
-                    <option value="237">Bradesco</option>
-                    <option value="341">Itaú</option>
-                    <option value="745">Banco Citibank</option>
-                    <option value="748">Sicredi</option>
-                    <option value="399">HSBC</option>
-                    <option value="004">Banco de Brasília (BRB)</option>
-                    <option value="634">Banco Safra</option>
-                    <option value="003">Banco da Amazônia</option>
-                    <option value="007">Banrisul</option>
-                    <option value="012">Banpará</option>
-                    <option value="022">Banco do Nordeste do Brasil (BNB)</option>
-                    <option value="041">Banco do Estado do Rio de Janeiro (BERJ)</option>
-                    <option value="077">Banco Inter</option>
-                    <option value="249">Banco Modal (ModalMais)</option>
-                    <option value="260">Nubank</option>
-                    <option value="334">Banco Neon</option>
-                    <option value="357">C6 Bank</option>
-                    <option value="021">Banco Original</option>
-                    <option value="323">Mercado Pago</option>
-                    <option value="332">Ame Digital</option>
-                    <option value="383">PagBank</option>
-                    <option value="142">PicPay</option>
-                    <option value="290">BS2</option>
-                    <option value="336">Banco Digio</option>
-                    <option value="364">Gerencianet</option>
-                    <option value="380">Banco Cora</option>
-                    <option value="381">Banco Next</option>
-                    <option value="382">Banco Pan</option>
-                    <option value="746">Banco Modal</option>
-                    <option value="756">Sicoob</option>
-                    <option value="389">Banco Mercantil do Brasil</option>
-                    <option value="399">HSBC Brasil</option>
-                    <option value="999">Outro Banco</option>
+                    <option value="Banco do Brasil">Banco do Brasil</option>
+                    <option value="Santander">Santander</option>
+                    <option value="Caixa Econômica Federal">Caixa Econômica Federal</option>
+                    <option value="Bradesco">Bradesco</option>
+                    <option value="Itaú">Itaú</option>
+                    <option value="Banco Citibank">Banco Citibank</option>
+                    <option value="Sicredi">Sicredi</option>
+                    <option value="HSBC">HSBC</option>
+                    <option value="Banco de Brasília (BRB)">Banco de Brasília (BRB)</option>
+                    <option value="Banco Safra">Banco Safra</option>
+                    <option value="Banco da Amazônia">Banco da Amazônia</option>
+                    <option value="Banrisul">Banrisul</option>
+                    <option value="Banpará">Banpará</option>
+                    <option value="Banco do Nordeste do Brasil (BNB)">Banco do Nordeste do Brasil (BNB)</option>
+                    <option value="Banco do Estado do Rio de Janeiro (BERJ)">Banco do Estado do Rio de Janeiro (BERJ)</option>
+                    <option value="Banco Inter">Banco Inter</option>
+                    <option value="Banco Modal (ModalMais)">Banco Modal (ModalMais)</option>
+                    <option value="Nubank">Nubank</option>
+                    <option value="Banco Neon">Banco Neon</option>
+                    <option value="C6 Bank">C6 Bank</option>
+                    <option value="Banco Original">Banco Original</option>
+                    <option value="Mercado Pago">Mercado Pago</option>
+                    <option value="Ame Digital">Ame Digital</option>
+                    <option value="PagBank">PagBank</option>
+                    <option value="PicPay">PicPay</option>
+                    <option value="BS2">BS2</option>
+                    <option value="Banco Digio">Banco Digio</option>
+                    <option value="Gerencianet">Gerencianet</option>
+                    <option value="Banco Cora">Banco Cora</option>
+                    <option value="Banco Next">Banco Next</option>
+                    <option value="Banco Pan">Banco Pan</option>
+                    <option value="Banco Modal">Banco Modal</option>
+                    <option value="Sicoob">Sicoob</option>
+                    <option value="Banco Mercantil do Brasil">Banco Mercantil do Brasil</option>
+                    <option value="Outro Banco">Outro Banco</option>
                 </select>
             </div>
 
             <div class="form-group" id="outroBanco" style="display:none;">
                 <label for="outroBancoInput">Informe o Nome do Banco:</label>
-                <input type="text" id="outroBancoInput" name="outroBanco" placeholder="Digite o nome do banco" required>
+                <input type="text" id="outroBancoInput" name="outroBanco" placeholder="Digite o nome do banco">
             </div>
 
             <!-- Agência -->
@@ -111,7 +109,7 @@
                 <input type="text" id="conta" name="conta" placeholder="Digite o número da conta" maxlength="12" required>
             </div>
 
-            <!-- Autenticação / Código de Segurança -->
+            <!-- Autenticação -->
             <div class="form-group">
                 <label for="autenticacao">Código de Autenticação:</label>
                 <input type="password" id="autenticacao" name="autenticacao" placeholder="Digite o código de autenticação" required>
@@ -124,11 +122,10 @@
             </a>
         </form>
 
-        <!-- Resultado das informações -->
+        <!-- Resultado -->
         <div id="resultado" style="display:none;">
             <h2>Informações Digitadas</h2>
             <p><strong>Banco Selecionado:</strong> <span id="resultadoBanco"></span></p>
-            <p><strong>Nome do Banco:</strong> <span id="resultadoOutroBanco"></span></p>
             <p><strong>Agência:</strong> <span id="resultadoAgencia"></span></p>
             <p><strong>Conta:</strong> <span id="resultadoConta"></span></p>
             <p><strong>Código de Autenticação:</strong> <span id="resultadoAutenticacao"></span></p>
@@ -145,15 +142,11 @@
             <button id="close-feedback">Fechar</button>
         </div>
     </div>
-
-    <script src="{% static 'scripts/banco.js' %}"></script>
-
     <script>
-        // Função para mostrar ou esconder o campo de "Outro Banco"
         function mostrarOutroBanco() {
             const banco = document.getElementById('banco').value;
             const outroBanco = document.getElementById('outroBanco');
-            if (banco === '999') {
+            if (banco === 'Outro Banco') {
                 outroBanco.style.display = 'block';
             } else {
                 outroBanco.style.display = 'none';
@@ -161,15 +154,12 @@
         }
 
         document.getElementById('enviarBtn').addEventListener('click', function() {
-            // Exibir o resultado
             const banco = document.getElementById('banco').value;
             const agencia = document.getElementById('agencia').value;
             const conta = document.getElementById('conta').value;
             const autenticacao = document.getElementById('autenticacao').value;
-            const outroBanco = document.getElementById('outroBancoInput').value;
 
             document.getElementById('resultadoBanco').textContent = banco;
-            document.getElementById('resultadoOutroBanco').textContent = outroBanco || 'Não especificado';
             document.getElementById('resultadoAgencia').textContent = agencia;
             document.getElementById('resultadoConta').textContent = conta;
             document.getElementById('resultadoAutenticacao').textContent = autenticacao;
@@ -179,3 +169,4 @@
     </script>
 </body>
 </html>
+    <script src="{% static 'core/scripts/banco.js' %}"></script>

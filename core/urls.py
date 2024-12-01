@@ -17,7 +17,7 @@ urlpatterns = [
     path('altsenha/', views.altsenha, name='altsenha'),
     path('altemail/', views.altemail, name='altemail'),
     path('alteraemail1/', views.altemail, name='altemail1'),
-    path('controle.f2/', views.controlef_view, name='controle.f2'),
+    path('controle.f2/', views.controlef2_view, name='controle.f2'),
     path('erro/', views.erro, name='erro'),
     path('pnegocios2/', views.pnegocios2, name='pnegocios2'),
 ]
