@@ -100,3 +100,33 @@ def adicionar_feedback(request):
         return JsonResponse({'status': 'success', 'message': 'Feedback enviado com sucesso!'})
 
     return JsonResponse({'status': 'error', 'message': 'Método inválido'})
+
+
+
+
+def pnegocios2(request):
+    # Recupera todas as vendas ordenadas pela data
+    vendas = Venda.objects.all().order_by('-data_venda')
+
+    # Calcula o total de vendas
+    total_vendas = sum(venda.total for venda in vendas)
+
+    # Filtra vendas realizadas hoje
+    vendas_hoje = vendas.filter(data_venda__date=datetime.today().date()).count()
+
+    # Exemplo de estoque (ajuste conforme sua lógica de estoque)
+    estoque_atual = 50  # Pode ser substituído por lógica dinâmica
+
+    # Exemplo de cálculo de lucro (ajuste conforme necessário)
+    lucro_estimado = total_vendas  # Aqui pode incluir descontos, custos, etc.
+
+    # Cria o contexto para enviar os dados ao template
+    context = {
+        'vendas': vendas,
+        'total_vendas': total_vendas,
+        'vendas_hoje': vendas_hoje,
+        'estoque_atual': estoque_atual,
+        'lucro_estimado': lucro_estimado,
+    }
+
+    return render(request, 'core/pnegocios2.html', context)

@@ -110,3 +110,6 @@ def adicionar_venda(request):
 
     # Passando as vendas para o template
     return render(request, 'pnegocios2', {'vendas': vendas})
+
+
+

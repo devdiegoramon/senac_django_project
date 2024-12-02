@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Vendas - Pequeno Negócio</title>
-    <!-- Carregando CSS via Django static -->
     <link rel="stylesheet" href="{% static 'core/css/pnegocios.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -27,15 +26,15 @@
                 <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
                 <ul class="dropdown" id="user-dropdown">
                     <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
-                    <br><hr>
+                    <hr>
                     <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
-                    <br><hr>
+                    <hr>
                     <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
-                    <br><hr>
+                    <hr>
                     <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
-                    <br><hr>
+                    <hr>
                     <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
-                    <br><hr>
+                    <hr>
                     <li class="user-men"><a href="{% url 'inicio' %}">Sair</a></li>
                 </ul>
             </li>
@@ -54,16 +53,16 @@
         <!-- Resumo Rápido -->
         <section class="quick-summary">
             <div class="summary-item">
-                <strong>Total de Vendas do Dia:</strong> R$ <span id="totalVendas">0,00</span>
+                <strong>Total de Vendas do Dia:</strong> R$ {{ total_vendas|default:"0,00" }}
             </div>
             <div class="summary-item">
-                <strong>Vendas de Hoje:</strong> <span id="vendasHoje">0</span>
+                <strong>Vendas de Hoje:</strong> {{ vendas_hoje|default:0 }}
             </div>
             <div class="summary-item">
-                <strong>Estoque Atual:</strong> <span id="estoqueAtual">50</span> itens
+                <strong>Estoque Atual:</strong> {{ estoque_atual|default:0 }} itens
             </div>
             <div class="summary-item">
-                <strong>Lucro Estimado:</strong> R$ <span id="lucroEstimado">0,00</span>
+                <strong>Lucro Estimado:</strong> R$ {{ lucro_estimado|default:"0,00" }}
             </div>
         </section>
 
@@ -83,7 +82,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- As vendas serão adicionadas dinamicamente -->
+                    {% for venda in vendas %}
+                    <tr>
+                        <td>{{ venda.id }}</td>
+                        <td>{{ venda.data|date:"d/m/Y" }}</td>
+                        <td>{{ venda.produto }}</td>
+                        <td>{{ venda.quantidade }}</td>
+                        <td>R$ {{ venda.valor_unitario|floatformat:2 }}</td>
+                        <td>R$ {{ venda.total|floatformat:2 }}</td>
+                        <td>{{ venda.status }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7">Nenhuma venda registrada.</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
@@ -122,13 +135,10 @@
     <footer>
         <div class="container-info">
             <div class="footer-row">
-                <!-- Sobre -->
                 <div class="footer-col">
                     <h3>Sobre</h3>
                     <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
                 </div>
-
-                <!-- Links rápidos -->
                 <div class="footer-col">
                     <h3>Links rápidos</h3>
                     <a href="{% url 'inicio2' %}">Home</a>
@@ -136,8 +146,6 @@
                     <a href="#">Serviços</a>
                     <a href="#">Contato</a>
                 </div>
-
-                <!-- Contato -->
                 <div class="footer-col">
                     <h3>Contato</h3>
                     <p>Email: morecash270@gmail.com</p>
@@ -157,12 +165,10 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
     <script>
         function submitFeedback() {
             let feedback = document.getElementById('feedback-text').value;
-            // Chamar a função do Django para salvar no banco de dados
             fetch("{% url 'adicionar_feedback' %}", {
                 method: "POST",
                 headers: {
