@@ -12,19 +12,6 @@ class Usuario(models.Model):
         return self.nome
 
 
-class Financas_pessoas(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='financas')
-    renda_mensal = models.DecimalField(max_digits=15, decimal_places=2)
-    gastos_fixos_mensais = models.DecimalField(max_digits=15, decimal_places=2)
-    gastos_variaveis_mensais = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_investimentos = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_dividas = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_objeto_financeiro = models.DecimalField(max_digits=15, decimal_places=2)
-
-    def __str__(self):
-        return f"Finanças de {self.usuario.nome}"
-
-
 class Informacoes_bancarias(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='informacoes_bancarias')
     banco = models.IntegerField()

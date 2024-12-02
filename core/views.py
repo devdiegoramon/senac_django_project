@@ -1,5 +1,9 @@
-# core/views.py
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import FinancasForm
+from .models import Financas
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 def inicio(request):
@@ -52,3 +56,25 @@ def erro(request):
 
 def pnegocios2(request):
     return render(request, 'core/pnegocios2.html')
+
+@login_required
+def controle_financas(request):
+    # Tente recuperar as finanças do usuário logado
+    try:
+        financas = Financas.objects.get(user=request.user)
+    except Financas.DoesNotExist:
+        financas = None
+
+    # Se o formulário for enviado (POST)
+    if request.method == 'POST':
+        form = FinancasForm(request.POST, instance=financas)
+        if form.is_valid():
+            form.save()  # Salva os dados no banco de dados
+            messages.success(request, 'Dados financeiros atualizados com sucesso!')
+            return redirect('controle_financas')  # Redireciona para a mesma página ou outra após salvar
+        else:
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+    else:
+        form = FinancasForm(instance=financas)
+
+    return render(request, 'core/controle.f2.html', {'form': form, 'financas': financas})
