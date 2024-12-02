@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Vendas - Pequeno Negócio</title>
-    <!-- Carregando CSS via Django static -->
     <link rel="stylesheet" href="{% static 'core/css/pnegocios.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -54,16 +53,16 @@
         <!-- Resumo Rápido -->
         <section class="quick-summary">
             <div class="summary-item">
-                <strong>Total de Vendas do Dia:</strong> R$ <span id="totalVendas">0,00</span>
+                <strong>Total de Vendas do Dia:</strong> R$ <span id="totalVendas">{{ total_vendas|floatformat:2 }}</span>
             </div>
             <div class="summary-item">
-                <strong>Vendas de Hoje:</strong> <span id="vendasHoje">0</span>
+                <strong>Vendas de Hoje:</strong> <span id="vendasHoje">{{ vendas_hoje }}</span>
             </div>
             <div class="summary-item">
-                <strong>Estoque Atual:</strong> <span id="estoqueAtual">50</span> itens
+                <strong>Estoque Atual:</strong> <span id="estoqueAtual">{{ estoque_atual }}</span> itens
             </div>
             <div class="summary-item">
-                <strong>Lucro Estimado:</strong> R$ <span id="lucroEstimado">0,00</span>
+                <strong>Lucro Estimado:</strong> R$ <span id="lucroEstimado">{{ lucro_estimado|floatformat:2 }}</span>
             </div>
         </section>
 
@@ -83,7 +82,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- As vendas serão adicionadas dinamicamente -->
+                    {% for venda in vendas %}
+                    <tr>
+                        <td>{{ venda.id }}</td>
+                        <td>{{ venda.data|date:"d/m/Y H:i" }}</td>
+                        <td>{{ venda.produto }}</td>
+                        <td>{{ venda.quantidade }}</td>
+                        <td>R$ {{ venda.valor_unitario|floatformat:2 }}</td>
+                        <td>R$ {{ venda.total|floatformat:2 }}</td>
+                        <td>{{ venda.status }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7">Nenhuma venda registrada.</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
@@ -91,16 +104,15 @@
         <!-- Adicionar Nova Venda -->
         <section class="add-sale">
             <h2>Adicionar Nova Venda</h2>
-            <form id="addSaleForm">
-                <label for="productName">Produto:</label>
-                <input type="text" id="productName" placeholder="Nome do produto" required>
-                
-                <label for="quantity">Quantidade:</label>
-                <input type="number" id="quantity" placeholder="Quantidade" required>
-                
-                <label for="unitPrice">Preço Unitário:</label>
-                <input type="number" id="unitPrice" placeholder="Preço Unitário" required>
-                
+            
+            <!-- Exibir mensagem de feedback -->
+            {% if mensagem %}
+                <p style="color: green;">{{ mensagem }}</p>
+            {% endif %}
+
+            <form id="addSaleForm" method="post" action="{% url 'adicionar_venda' %}">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Exibe os campos do formulário -->
                 <button type="submit">Adicionar Venda</button>
             </form>
         </section>
@@ -120,46 +132,11 @@
     <!-- Rodapé -->
     <footer>
         <div class="container-info">
-            <div class="footer-row">
-                <!-- Sobre -->
-                <div class="footer-col">
-                    <h3>Sobre</h3>
-                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
-                </div>
-
-                <!-- Links rápidos -->
-                <div class="footer-col">
-                    <h3>Links rápidos</h3>
-                    <a href="{% url 'inicio2' %}">Home</a>
-                    <a href="#">Sobre Nós</a>
-                    <a href="#">Serviços</a>
-                    <a href="#">Contato</a>
-                </div>
-
-                <!-- Contato -->
-                <div class="footer-col">
-                    <h3>Contato</h3>
-                    <p>Email: morecash270@gmail.com</p>
-                    <p>Telefone: (81) 90505-8282</p>
-                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
-                </div>
-            </div>
-            <div class="social-icons">
-                <a href="#" target="_blank">🔗</a>
-                <a href="#" target="_blank">📘</a>
-                <a href="#" target="_blank">🐦</a>
-                <a href="#" target="_blank">📸</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-            </div>
+            <!-- Informações do rodapé -->
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
-    <script>
-        // Scripts JS (mesmo conteúdo da versão original)
-    </script>
 </body>
 </html>

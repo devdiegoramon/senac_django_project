@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from contas.models import Vendas
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': ''}))
@@ -25,3 +27,18 @@ class LoginForm(forms.Form):
         label="Senha", 
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
+
+
+#models de vendas
+
+class VendaForm(forms.ModelForm):
+    class Meta:
+        model = Vendas
+        fields = ['nome_produto', 'quantidade_de_produto_vendido', 'preco', 'data_da_venda', 'status']  # Campos do modelo
+        widgets = {
+            'nome_produto': forms.TextInput(attrs={'placeholder': 'Nome do Produto'}),
+            'quantidade_de_produto_vendido': forms.NumberInput(attrs={'placeholder': 'Quantidade'}),
+            'preco': forms.NumberInput(attrs={'placeholder': 'Preço Unitário', 'step': '0.01'}),
+            'data_da_venda': forms.DateInput(attrs={'type': 'date'}),  # Widget de data
+            'status': forms.TextInput(attrs={'placeholder': 'Status da Venda'}),
+        }

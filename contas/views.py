@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import VendaForm 
 
 # Função de criação de conta
 def signup(request):
@@ -48,3 +49,18 @@ def user_logout(request):
     logout(request)
     messages.info(request, 'Você foi desconectado.')
     return redirect('login')
+
+def adicionar_venda(request):
+    if request.method == 'POST':
+        form = VendaForm(request.POST)
+        if form.is_valid():
+            form.save()  # Salva a venda no banco de dados
+            mensagem = "Venda adicionada com sucesso!"
+            return redirect('pnegocios2')  # Redireciona para a página de vendas
+        else:
+            mensagem = "Erro ao adicionar venda! Verifique os campos."
+    else:
+        form = VendaForm()
+
+    # Se a requisição for GET ou o formulário não for válido, mostramos a página com o formulário.
+    return render(request, 'core/pnegocios2.html', {'form': form, 'mensagem': mensagem})
