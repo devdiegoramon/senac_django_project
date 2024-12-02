@@ -3,6 +3,12 @@ from .forms import FinancasForm
 from .models import Financas
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from . import views
+
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from .models import Venda
+
 
 
 
@@ -78,3 +84,29 @@ def controle_financas(request):
         form = FinancasForm(instance=financas)
 
     return render(request, 'core/controle.f2.html', {'form': form, 'financas': financas})
+
+
+
+
+
+def adicionar_venda(request):
+    if request.method == "POST":
+        # Adicionando a venda no banco de dados
+        produto = request.POST.get('product_name')
+        quantidade = request.POST.get('quantity')
+        preco_unitario = request.POST.get('unit_price')
+
+        if produto and quantidade and preco_unitario:
+            venda = Venda(
+                produto=produto, 
+                quantidade=quantidade, 
+                preco_unitario=preco_unitario,
+                total=quantidade * preco_unitario  # Calculando o total
+            )
+            venda.save()
+
+    # Recuperando todas as vendas para exibir
+    vendas = Venda.objects.all()
+
+    # Passando as vendas para o template
+    return render(request, 'pnegocios2', {'vendas': vendas})

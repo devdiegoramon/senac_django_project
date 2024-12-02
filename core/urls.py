@@ -20,4 +20,7 @@ urlpatterns = [
     path('erro/', views.erro, name='erro'),
     path('pnegocios2/', views.pnegocios2, name='pnegocios2'),
     path('controle_financas/', views.controle_financas, name='controle_financas'),
+  # Página principal de vendas
+   path('', views.controle_financas, name='controle_vendas'),
+
 ]

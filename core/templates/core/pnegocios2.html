@@ -91,15 +91,16 @@
         <!-- Adicionar Nova Venda -->
         <section class="add-sale">
             <h2>Adicionar Nova Venda</h2>
-            <form id="addSaleForm">
+            <form id="addSaleForm" method="POST" action="{% url 'adicionar_venda' %}">
+                {% csrf_token %}
                 <label for="productName">Produto:</label>
-                <input type="text" id="productName" placeholder="Nome do produto" required>
+                <input type="text" id="productName" name="product_name" placeholder="Nome do produto" required>
                 
                 <label for="quantity">Quantidade:</label>
-                <input type="number" id="quantity" placeholder="Quantidade" required>
+                <input type="number" id="quantity" name="quantity" placeholder="Quantidade" required>
                 
                 <label for="unitPrice">Preço Unitário:</label>
-                <input type="number" id="unitPrice" placeholder="Preço Unitário" required>
+                <input type="number" id="unitPrice" name="unit_price" placeholder="Preço Unitário" required>
                 
                 <button type="submit">Adicionar Venda</button>
             </form>
@@ -112,7 +113,7 @@
         <div id="feedback-form-container">
             <h2>Nos envie seu feedback!</h2>
             <textarea id="feedback-text" placeholder="Digite seu feedback aqui..."></textarea>
-            <button id="submit-feedback">Enviar</button>
+            <button id="submit-feedback" onclick="submitFeedback()">Enviar</button>
             <button id="close-feedback">Fechar</button>
         </div>
     </div>
@@ -159,7 +160,24 @@
     <!-- Scripts -->
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
     <script>
-        // Scripts JS (mesmo conteúdo da versão original)
+        function submitFeedback() {
+            let feedback = document.getElementById('feedback-text').value;
+            // Chamar a função do Django para salvar no banco de dados
+            fetch("{% url 'adicionar_feedback' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({ feedback: feedback })
+            }).then(response => {
+                if (response.ok) {
+                    alert("Feedback enviado com sucesso!");
+                } else {
+                    alert("Erro ao enviar feedback.");
+                }
+            });
+        }
     </script>
 </body>
 </html>

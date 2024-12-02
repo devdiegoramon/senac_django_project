@@ -3,7 +3,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.views.decorators.csrf import csrf_exempt
+from .models import Venda, Feedback
+from django.http import JsonResponse
+import json
+from datetime import datetime
 # Função de criação de conta
 def signup(request):
     if request.method == 'POST':
@@ -48,3 +52,51 @@ def user_logout(request):
     logout(request)
     messages.info(request, 'Você foi desconectado.')
     return redirect('login')
+
+
+#abaixo a tentativa de bd do pgnegocios
+
+def pnegocios2(request):
+    vendas = Venda.objects.all().order_by('-data_venda')
+    total_vendas = sum(venda.total for venda in vendas)
+    vendas_hoje = vendas.filter(data_venda__date=datetime.today().date()).count()
+    estoque_atual = 50  # Exemplo estático, você pode personalizar isso
+    lucro_estimado = total_vendas  # Como exemplo, consideramos o total de vendas como lucro estimado
+
+    context = {
+        'vendas': vendas,
+        'total_vendas': total_vendas,
+        'vendas_hoje': vendas_hoje,
+        'estoque_atual': estoque_atual,
+        'lucro_estimado': lucro_estimado,
+    }
+
+    return render(request, 'core/pnegocios2.html', context)
+
+# View para adicionar uma nova venda
+def adicionar_venda(request):
+    if request.method == 'POST':
+        produto = request.POST.get('product_name')
+        quantidade = int(request.POST.get('quantity'))
+        preco_unitario = float(request.POST.get('unit_price'))
+        
+        venda = Venda(produto=produto, quantidade=quantidade, preco_unitario=preco_unitario)
+        venda.save()
+
+        return redirect('pnegocios2')
+
+    return redirect('pnegocios2')  # Em caso de método diferente de POST, volta para a página de vendas
+
+# View para enviar feedback
+@csrf_exempt  # Usado para testar, mas em produção, o CSRF deve ser tratado corretamente
+def adicionar_feedback(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)  # Captura o feedback enviado como JSON
+        feedback_text = data.get('feedback')
+
+        feedback = Feedback(feedback=feedback_text)
+        feedback.save()
+
+        return JsonResponse({'status': 'success', 'message': 'Feedback enviado com sucesso!'})
+
+    return JsonResponse({'status': 'error', 'message': 'Método inválido'})
