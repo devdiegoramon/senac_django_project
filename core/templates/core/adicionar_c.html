@@ -17,9 +17,9 @@
         </div>
         <nav class="nav-bar">
             <ul class="list-menu">
-                <li><a href="{% url 'inicio' %}">Início</a></li>
-                <li><a href="#">Finanças Pessoais</a></li>
-                <li><a href="#">Pequenos Negócios</a></li>
+                <li><a href="{% url 'inicio2' %}">Início</a></li>
+                <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
             </ul>
             <li class="User-Menu">
                 <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
@@ -50,7 +50,9 @@
         <form id="formulario" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Cadastrar Conta</button>
+            <a href="{% url 'signup' %}">
+            <button type="button">Cadastrar Conta</button>
+            </a>
             <a href="{% url 'inicio2' %}">
                 <button type="button" class="voltar-btn">Voltar</button>
             </a>
