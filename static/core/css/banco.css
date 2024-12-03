@@ -1,3 +1,4 @@
+/* inico */
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +28,7 @@
 .list-menu a{
     border-radius: 5px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 100%;
+    font-size: 150%;
 
 }
 .list-menu a:hover{
@@ -136,9 +137,7 @@ i{
     transform: scale(1.1); 
 }
 
-
-
-/* Reset de Estilos Básicos */
+/* Geral */
 * {
     margin: 0;
     padding: 0;
@@ -146,178 +145,41 @@ i{
     font-family: Arial, sans-serif;
 }
 
-/* Corpo da página */
 body {
     background-color: rgba(0, 0, 0, 0.068);
     color: #333;
     line-height: 1.6;
-    font-size: 16px;
     padding: 0;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #004d7a;;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    animation: fadeIn 2s ease-out;
+/* Logo */
+.logo img {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 20px;
 }
 
-header .info {
-    font-size: 20px;
-}
-
-/* Container principal */
+/* Container Principal */
 .conteiner {
-    margin-top: 30px;
-    animation: fadeInUp 1.5s ease-out;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    animation: fadeIn 1s ease-out;
 }
 
-/* Seção de resumo rápido */
-.quick-summary {
-    display: flex; /* Exibe os itens lado a lado */
-    justify-content: space-between; /* Espaço entre os itens */
-    gap: 20px; /* Espaçamento entre os itens */
-    margin-bottom: 30px;
-}
-
-.summary-item {
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex: 1; /* Garante que todos os itens terão o mesmo tamanho */
-}
-
-.summary-item strong {
-    display: block;
-    font-size: 16px;
-    color: #333;
-}
-
-.summary-item {
-    font-size: 14px;
-    color: #666;
-}
-
-
-.summary-item:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Tabela de Vendas */
-.sales-table {
-    margin-bottom: 30px;
-    animation: fadeInUp 1.5s ease-out;
-}
-
-.sales-table h2 {
+/* Título do Formulário */
+h1 {
+    color: #2a9d8f;
     text-align: center;
-    margin-bottom: 20px;
-    color: #007BFF;
+    margin-bottom: 30px;
+    font-size: 28px;
+    animation: slideInFromTop 1s ease-out;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    font-size: 14px;
-}
-
-th {
-    background-color: #004d7a;;
-    color: white;
-}
-
-td {
-    background-color: #f9f9f9;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-td:hover {
-    background-color: #f1f1f1;
-    transform: translateY(-2px);
-}
-
-tr:nth-child(even) td {
-    background-color: #f2f8fc;
-}
-
-/* Adicionar Nova Venda */
-.add-sale {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: slideIn 1s ease-out;
-}
-
-.add-sale h2 {
-    margin-bottom: 20px;
-    color:#004d7a;
-}
-
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    transition: border 0.3s ease;
-}
-
-form input:focus {
-    background-color: #004d7a;;
-    outline: none;
-}
-
-button {
-    background-color: #004d7a;;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s;
-}
-
-button:hover {
-    background-color: #004d7a;;
-    transform: scale(1.05);
-}
-
-button:active {
-    background-color: #004d7a;;
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 14px;
-    color: #aaa;
-    animation: fadeIn 2s ease-out;
-}
-
-/* Animações */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -327,63 +189,100 @@ footer {
     }
 }
 
-@keyframes fadeInUp {
+@keyframes slideInFromTop {
     from {
+        transform: translateY(-20px);
         opacity: 0;
-        transform: translateY(20px);
     }
     to {
-        opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
         opacity: 1;
-        transform: translateX(0);
     }
 }
 
-/* Media Queries for Responsiveness */
+/* Estilo dos Grupos de Formulário */
+.form-group {
+    margin-bottom: 20px;
+}
 
-@media (max-width: 1024px) {
-    .container {
-        flex-direction: column;
-        padding: 15px;
-        align-items: center;
-    }
+label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
 
-    .nav-bar {
-        width: 100%;
-        justify-content: center;
-    }
+/* Campos de Texto */
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
 
-    .list-menu {
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-        align-items: center;
-    }
+/* Focus nos Campos */
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #2a9d8f;
+    background-color: #eaf5f3;
+    outline: none;
+}
 
-    .list-menu li {
-        margin-right: 0; /* Remove right margin for list items */
-    }
+/* Campo para Banco "Outro" */
+#outroBanco {
+    display: none;
+}
 
-    .user-menu {
-        position: relative;
-        top: 20px;
-        right: auto;
-    }
+#outroBancoInput {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
 
-    img {
-        width: 200px;
-        height: 200px;
-    }
+#outroBancoInput:focus {
+    border-color: #2a9d8f;
+    background-color: #eaf5f3;
+    outline: none;
+}
+
+/* Botões */
+button {
+    background-color: #2a9d8f;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #264653;
+}
+
+button:active {
+    background-color: #1b3a34;
+}
+
+.voltar {
+    background-color: #ddd;
+    color: #333;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.voltar:hover {
+    background-color: #ccc;
 }
 #feedback-wrapper {
     position: fixed;
@@ -469,6 +368,43 @@ footer {
 #feedback-form-container.hide {
     display: none;
     opacity: 0;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: center;
+    }
+
+    .nav-bar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .list-menu {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .list-menu li {
+        margin-right: 0; /* Remove right margin for list items */
+    }
+
+    .user-menu {
+        position: relative;
+        top: 20px;
+        right: auto;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
 }
 /* Responsividade */
 @media (max-width: 768px) {

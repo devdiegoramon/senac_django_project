@@ -1,4 +1,4 @@
-/* Reset básico */
+/*Inicio cadastros*/
 * {
     margin: 0;
     padding: 0;
@@ -7,56 +7,90 @@
     text-decoration: none;
 }
 
+.container{
+    display: flex;
+}
+
+.volte{
+    font-size: 12px;
+    float: right;
+    padding-bottom: 10px;
+}
+
 body {
     background-image: url(../img/graphic-2d-colorful-wallpaper-with-grainy-gradients.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     width: 100%;
     font-family: Arial, sans-serif;
+  /*  background-color: #0360FC;*/
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     flex-direction: column;
-    color: #ffffff;
+    color: #eeeeee;
+    background-attachment: fixed;
 }
 
-
-/* Container principal */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 15px;
-}
-
-/* Estilo do bloco de login e formulário */
-.LOGIN1, .Formulario {
+.LOGIN1{
     background-color: rgba(255, 255, 255, 0.3);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    box-sizing: border-box; /* Evita overflow */
 }
 
-/* Título do formulário */
+
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #fff;
 }
 
-/* Estilo do formulário */
+.LOGIN1{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1200px;
+}
+
+
+img{
+    width: 20px;
+    display: flex;
+    display: inline-flex;
+    vertical-align: sub;
+    margin-right: 20px;
+}
+
+@keyframes go-back {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.quadrado {
+    animation: go-back 3s;
+}
+
+/* Estilo do Formulário */
+.Formulario {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+
 .Formulario div {
     margin-bottom: 15px;
 }
@@ -77,7 +111,6 @@ input[type="password"] {
     border: 1px solid #ddd;
     border-radius: 4px;
     transition: border-color 0.3s ease;
-    box-sizing: border-box; /* Evita overflow */
 }
 
 input[type="email"]:focus,
@@ -102,7 +135,6 @@ button {
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;
 }
 
 button:hover {
@@ -110,18 +142,23 @@ button:hover {
     color: #fff;
 }
 
-/* Estilo para as logos e labels */
-.logos {
+div label {
+    font-size: 1em;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+div label:hover {
+    color: #fff;
+}
+
+.logos{
     padding: 50px;
     display: flex;
     gap: 40px;
     color: #fff;
-    justify-content: center;
-    flex-wrap: wrap;
 }
-.logos img{
-    max-width: 20px;
-}
+
 .logos label {
     text-align: center;
     justify-content: center;
@@ -130,127 +167,17 @@ button:hover {
     padding: 5px;
     text-align: center;
     border-radius: 5px;
-    transition: transform 1s ease;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 5px;
+    transition: transform 1s ease; 
+    gap: 40px;
 }
 
-.logos label:hover {
-    transform: scale(1.1);
-}
-
-a {
+a{
     color: #fff;
     margin-right: 10px;
 }
 
-.volte {
-    font-size: 12px;
-    float: right;
-    padding-bottom: 10px;
-}
-
-/* Animação de retorno */
-@keyframes go-back {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.quadrado {
-    animation: go-back 3s;
-}
-
-/* Responsividade - Ajustes para telas maiores (até 1024px) */
-@media (max-width: 1024px) {
-    .container {
-        padding: 10px;
-    }
-
-    .LOGIN1, .Formulario {
-        padding: 15px;
-        max-width: 350px;
-    }
-
-    .logos {
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .logos label {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 1.8em;
-    }
-}
-
-/* Responsividade para dispositivos menores (até 768px) */
-@media (max-width: 768px) {
-    body {
-        padding: 5px;
-    }
-
-    .LOGIN1, .Formulario {
-        padding: 10px;
-        max-width: 100%;
-        margin: 0 10px;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-
-    .logos {
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .logos label {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    button {
-        padding: 12px 25px;
-    }
-}
-
-/* Responsividade para telas muito pequenas (até 480px) */
-@media (max-width: 480px) {
-    body {
-        padding: 5px;
-    }
-
-    .LOGIN1, .Formulario {
-        padding: 10px;
-        max-width: 100%;
-        margin: 0;
-    }
-
-    h1 {
-        font-size: 1.2em;
-    }
-
-    .logos {
-        padding: 10px;
-        gap: 10px;
-    }
-
-    .logos label {
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    button {
-        padding: 10px;
-    }
+.logos label:hover {
+    transform: scale(1.1); 
 }
 /* Estilos principais do rodapé */
 footer {
@@ -338,3 +265,33 @@ footer .container-info {
         justify-content: center;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
