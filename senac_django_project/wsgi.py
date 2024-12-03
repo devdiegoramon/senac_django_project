@@ -1,10 +1,6 @@
-# wsgi.py
+import os
+from django.core.wsgi import get_wsgi_application
 
-from senac_django_project.wsgi import application
-from whitenoise import WhiteNoise
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'senac_django_project.settings')
 
-# Adicione o WhiteNoise para servir arquivos estáticos
-application = WhiteNoise(application, root="static")
-
-# Permite o uso de arquivos comprimidos para melhorar a performance
-application.add_files("static", prefix="static/")
+application = get_wsgi_application()

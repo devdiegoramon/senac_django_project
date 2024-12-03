@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx
 DEBUG = False
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
-ALLOWED_HOSTS = ['senac-django-project.vercel.app', '.vercel.app', '127.0.0.1', 'localhost', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['*']
 
 # URLs para login, redirecionamento após login e logout.
 LOGIN_URL = '/accounts/login/'  # URL para a página de login
