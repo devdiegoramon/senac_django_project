@@ -3,6 +3,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from core.views import inicio  # Importe a view 'home' do módulo 'core'
+from django.conf.urls import handler404, handler500
+from core import views as core_views
+
+# Configuração para tratamento de erros
+handler404 = core_views.pagina_nao_encontrada
+handler500 = core_views.erro_interno
 
 def redirect_home(request):
     return redirect('inicio')  # Redireciona para a URL nomeada 'home'

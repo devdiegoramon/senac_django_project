@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import FinancasForm
+
 from .models import Financas, Venda  # Certifique-se de importar o modelo Venda
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import Http404
 from django.http import JsonResponse
+
 
 def inicio(request):
     return render(request, 'core/inicio.html')
@@ -126,3 +127,9 @@ def excluir_venda(request, venda_id):
         return redirect('pnegocios2')  # Altere para a view correta
     
     return render(request, 'core/pnegocios2.html', {'venda': venda})
+
+def pagina_nao_encontrada(request, exception):
+    return render(request, 'core/erro.html', status=404)
+
+def erro_interno(request):
+    return render(request, 'core/erro.html', status=500)
