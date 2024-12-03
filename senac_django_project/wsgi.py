@@ -10,7 +10,7 @@ try:
     application = get_wsgi_application()
 
     # Configurando o WhiteNoise para servir arquivos estáticos
-    application = WhiteNoise(application, root=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'staticfiles'))
+    application = WhiteNoise(application, root=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))
 except Exception as e:
     # Imprime o erro no console para depuração
     print(f"Erro ao carregar WSGI application: {e}", file=sys.stderr)
