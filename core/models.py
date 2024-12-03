@@ -22,5 +22,8 @@ class Venda(models.Model):
     status = models.CharField(max_length=50, default='Pendente')
     data_venda = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        db_table = 'conta_venda'  # Especificando o nome da tabela no banco de dados
+
     def __str__(self):
         return f"{self.produto} - {self.quantidade} unidades"

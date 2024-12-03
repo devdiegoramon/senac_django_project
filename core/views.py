@@ -1,19 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import FinancasForm
-from .models import Financas
+from .models import Financas, Venda  # Certifique-se de importar o modelo Venda
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from . import views
-
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Venda
-
-
-
+from django.http import Http404
+from django.http import JsonResponse
 
 def inicio(request):
-    return render(request, 'core/inicio.html')  # Rende a página inicio.html
+    return render(request, 'core/inicio.html')
 
 def login_view(request):
     return render(request, 'contas/login.html')
@@ -85,10 +80,7 @@ def controle_financas(request):
 
     return render(request, 'core/controle.f2.html', {'form': form, 'financas': financas})
 
-
-
-
-
+# Função para adicionar uma venda
 def adicionar_venda(request):
     if request.method == "POST":
         # Adicionando a venda no banco de dados
@@ -109,7 +101,12 @@ def adicionar_venda(request):
     vendas = Venda.objects.all()
 
     # Passando as vendas para o template
-    return render(request, 'pnegocios2', {'vendas': vendas})
+    return render(request, 'core/pnegocios2.html', {'vendas': vendas})
 
+# Função para excluir uma venda
 
-
+def excluir_venda(request, venda_id):
+    if request.method == "POST":
+        venda = get_object_or_404(Venda, id=venda_id)
+        venda.delete()
+        return redirect('pnegocios2') 

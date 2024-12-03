@@ -79,11 +79,12 @@
                         <th>Valor Unitário</th>
                         <th>Total</th>
                         <th>Status</th>
+                        <th>Ações</th>  <!-- Coluna para ações (Excluir) -->
                     </tr>
                 </thead>
                 <tbody>
                     {% for venda in vendas %}
-                    <tr>
+                    <tr id="venda-{{ venda.id }}">
                         <td>{{ venda.id }}</td>
                         <td>{{ venda.data|date:"d/m/Y" }}</td>
                         <td>{{ venda.produto }}</td>
@@ -91,10 +92,17 @@
                         <td>R$ {{ venda.valor_unitario|floatformat:2 }}</td>
                         <td>R$ {{ venda.total|floatformat:2 }}</td>
                         <td>{{ venda.status }}</td>
+                        <td>
+                            <!-- Formulário para excluir venda -->
+                            <form method="POST" action="{% url 'excluir_venda' venda.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-venda">Excluir</button>
+                            </form>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="7">Nenhuma venda registrada.</td>
+                        <td colspan="8">Nenhuma venda registrada.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -118,17 +126,6 @@
                 <button type="submit">Adicionar Venda</button>
             </form>
         </section>
-    </div>
-
-    <!-- Feedback -->
-    <div id="feedback-wrapper">
-        <button id="feedback-btn">Deixe seu Feedback</button>
-        <div id="feedback-form-container">
-            <h2>Nos envie seu feedback!</h2>
-            <textarea id="feedback-text" placeholder="Digite seu feedback aqui..."></textarea>
-            <button id="submit-feedback" onclick="submitFeedback()">Enviar</button>
-            <button id="close-feedback">Fechar</button>
-        </div>
     </div>
 
     <!-- Rodapé -->
@@ -166,24 +163,5 @@
     </footer>
 
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
-    <script>
-        function submitFeedback() {
-            let feedback = document.getElementById('feedback-text').value;
-            fetch("{% url 'adicionar_feedback' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": "{{ csrf_token }}"
-                },
-                body: JSON.stringify({ feedback: feedback })
-            }).then(response => {
-                if (response.ok) {
-                    alert("Feedback enviado com sucesso!");
-                } else {
-                    alert("Erro ao enviar feedback.");
-                }
-            });
-        }
-    </script>
 </body>
 </html>
