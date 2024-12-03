@@ -116,7 +116,7 @@ STATICFILES_DIRS = [
 ]
 
 # Configuração para servir os arquivos estáticos em produção
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Adicione suporte à compressão e cache dos arquivos estáticos
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
