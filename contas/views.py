@@ -62,6 +62,8 @@ def pnegocios2(request):
     vendas_hoje = vendas.filter(data_venda__date=datetime.today().date()).count()
     estoque_atual = 50  # Exemplo estático, você pode personalizar isso
     lucro_estimado = total_vendas  # Como exemplo, consideramos o total de vendas como lucro estimado
+    vendas = Venda.objects.all().order_by('-data_venda')
+
 
     context = {
         'vendas': vendas,

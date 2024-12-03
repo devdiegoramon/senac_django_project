@@ -88,12 +88,21 @@ def adicionar_venda(request):
         quantidade = request.POST.get('quantity')
         preco_unitario = request.POST.get('unit_price')
 
+        # Verificar se os dados foram fornecidos
         if produto and quantidade and preco_unitario:
+            # Convertendo para tipos numéricos apropriados
+            quantidade = int(quantidade)  # Converter quantidade para inteiro
+            preco_unitario = Decimal(preco_unitario)  # Converter preco_unitario para Decimal
+
+            # Calculando o total
+            total = preco_unitario * quantidade
+
+            # Criando e salvando a venda
             venda = Venda(
                 produto=produto, 
                 quantidade=quantidade, 
                 preco_unitario=preco_unitario,
-                total=quantidade * preco_unitario  # Calculando o total
+                total=total
             )
             venda.save()
 

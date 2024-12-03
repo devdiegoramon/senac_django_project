@@ -136,7 +136,7 @@ i{
     transform: scale(1.1); 
 }
 
-/*controles*/
+
 
 /* Reset de Estilos Básicos */
 * {
@@ -174,13 +174,12 @@ header .info {
     animation: fadeInUp 1.5s ease-out;
 }
 
-/* Resumo Rápido */
+/* Seção de resumo rápido */
 .quick-summary {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    display: flex; /* Exibe os itens lado a lado */
+    justify-content: space-between; /* Espaço entre os itens */
+    gap: 20px; /* Espaçamento entre os itens */
     margin-bottom: 30px;
-    animation: slideIn 1s ease-out;
 }
 
 .summary-item {
@@ -188,11 +187,22 @@ header .info {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1; /* Garante que todos os itens terão o mesmo tamanho */
 }
 
+.summary-item strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.summary-item {
+    font-size: 14px;
+    color: #666;
+}
+
+
 .summary-item:hover {
-    transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
