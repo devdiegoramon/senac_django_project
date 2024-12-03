@@ -114,8 +114,12 @@ STATIC_URL = '/static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # Configuração para servir os arquivos estáticos em produção
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Configurações para arquivos de mídia (arquivos carregados pelos usuários).
 MEDIA_URL = '/media/'  # URL para acessar os arquivos de mídia
