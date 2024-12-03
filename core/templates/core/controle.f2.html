@@ -1,178 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Finanças Pessoais</title>
-    <link rel="stylesheet" href="/css/controle.f.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/controle.f.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Cabeçalho -->
     <header class="container">
         <div class="title">
-            <a href="inicio2.html">
-                <img src="/img/logo.png" alt="Logo">
+            <a href="{% url 'inicio2' %}">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo">
             </a>
         </div>
         <nav class="nav-bar">
             <ul class="list-menu">
-                <li><a href="/HTML/inicio2.html">Início</a></li>
-                <li><a href="/HTML/controle.f2.html">Finanças Pessoais</a></li>
-                <li><a href="/HTML/pnegocios2.html">Pequenos Negócios</a></li>
+                <li><a href="{% url 'inicio2' %}">Início</a></li>
+                <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
             </ul>
 
             <li class="User-Menu">
                 <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
                 <ul class="dropdown" id="user-dropdown">
-                    <li class="user-men"><a href="perfil.html">Editar Perfil</a></li>
-                    <br>
-                    <hr>
-                    <li class="user-men"><a href="adionar-c.html">Adicionar Conta</a></li>
-                    <br>
-                    <hr>
-                    <li class="user-men"><a href="banco.html">Configurações do Banco</a></li>
-                    <br>
-                    <hr>
-                    <li class="user-men"><a href="/HTML/recsenha.html">Esqueci Minha Senha</a></li>
-                    <br>
-                    <hr>
-                    <li class="user-men"><a href="/HTML/suporte.html">Suporte</a></li>
-                    <br>
-                    <hr>
-                    <li class="user-men"><a href="#sair">Sair</a></li>
+                    <li><a href="{% url 'perfil' %}">Editar Perfil</a></li>
+                    <li><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
+                    <li><a href="{% url 'banco' %}">Configurações do Banco</a></li>
+                    <li><a href="{% url 'altsenha' %}">Esqueci Minha Senha</a></li>
+                    <li><a href="{% url 'suporte' %}">Suporte</a></li>
+                    <li><a href="{% url 'inicio' %}">Sair</a></li>
                 </ul>
             </li>
         </nav>
     </header>
-
-    <!-- Controle de Finanças Pessoais -->
     <section class="financial-control">
         <h2>Controle de Finanças Pessoais</h2>
-
-        <!-- Resumo de Finanças -->
-        <div class="summary-item">
-            <strong>Renda Mensal:</strong> R$ <span id="rendaMensal">0,00</span>
-        </div>
-        <div class="summary-item">
-            <strong>Gastos Fixos Mensais:</strong> R$ <span id="gastosFixos">0,00</span>
-        </div>
-        <div class="summary-item">
-            <strong>Gastos Variáveis Mensais:</strong> R$ <span id="gastosVariaveis">0,00</span>
-        </div>
-        <div class="summary-item">
-            <strong>Investimentos:</strong> R$ <span id="investimentos">0,00</span>
-        </div>
-        <div class="summary-item">
-            <strong>Dívidas:</strong> R$ <span id="dividas">0,00</span>
-        </div>
-        <div class="summary-item">
-            <strong>Objetivo Financeiro:</strong> <span id="objetivoFinanceiro">Defina um objetivo</span>
-        </div>
-
-        <!-- Formulário de Controle de Finanças -->
-        <form id="financeForm">
-            <label for="income">Digite sua Renda Mensal:</label>
-            <input type="number" id="income" placeholder="Renda Mensal" required>
-
-            <label for="fixedExpenses">Gastos Fixos Mensais:</label>
-            <input type="number" id="fixedExpenses" placeholder="Gastos Fixos" required>
-
-            <label for="variableExpenses">Gastos Variáveis Mensais:</label>
-            <input type="number" id="variableExpenses" placeholder="Gastos Variáveis" required>
-
-            <label for="investments">Investimentos:</label>
-            <input type="number" id="investments" placeholder="Investimentos" required>
-
-            <label for="debts">Dívidas:</label>
-            <input type="number" id="debts" placeholder="Dívidas" required>
-
-            <label for="financialGoal">Objetivo Financeiro:</label>
-            <input type="text" id="financialGoal" placeholder="Descreva seu objetivo" required>
-
-            <button type="submit">Calcular Finanças</button>
+    
+        {% if financas %}
+            <table class="financial-table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Renda Mensal</td>
+                        <td>R$ {{ financas.renda_mensal|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gastos Fixos Mensais</td>
+                        <td>R$ {{ financas.gastos_fixos|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gastos Variáveis Mensais</td>
+                        <td>R$ {{ financas.gastos_variaveis|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Investimentos</td>
+                        <td>R$ {{ financas.investimentos|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Dívidas</td>
+                        <td>R$ {{ financas.dividas|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Objetivo Financeiro</td>
+                        <td>{{ financas.objetivo_financeiro }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <p>Não há informações financeiras registradas.</p>
+        {% endif %}
+    </section>
+    
+    
+        <!-- Formulário para adicionar/atualizar dados financeiros -->
+        <form method="post" action="{% url 'controle_financas' %}">
+            {% csrf_token %}
+            
+            <!-- Exibe os erros do formulário -->
+            <div class="alert alert-danger" role="alert">
+                {% if form.errors %}
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                {% endif %}
+            </div>
+        
+            <!-- Campos do Formulário -->
+            <div class="form-group">
+                <label for="renda_mensal">Renda Mensal:</label>
+                {{ form.renda_mensal }}
+            </div>
+        
+            <div class="form-group">
+                <label for="gastos_fixos">Gastos Fixos:</label>
+                {{ form.gastos_fixos }}
+            </div>
+        
+            <div class="form-group">
+                <label for="gastos_variaveis">Gastos Variáveis:</label>
+                {{ form.gastos_variaveis }}
+            </div>
+        
+            <div class="form-group">
+                <label for="investimentos">Investimentos:</label>
+                {{ form.investimentos }}
+            </div>
+        
+            <div class="form-group">
+                <label for="dividas">Dívidas:</label>
+                {{ form.dividas }}
+            </div>
+        
+            <div class="form-group">
+                <label for="objetivo_financeiro">Objetivo Financeiro:</label>
+                {{ form.objetivo_financeiro }}
+            </div>
+        
+            <!-- Botão para salvar os dados -->
+            <button type="submit" class="btn btn-success">Salvar</button>
         </form>
+               
     </section>
 
-    <!-- Feedback -->
-    <div id="feedback-wrapper">
-        <button id="feedback-btn">Deixe seu Feedback</button>
-        <div id="feedback-form-container">
-            <h2>Nos envie seu feedback!</h2>
-            <textarea id="feedback-text" placeholder="Digite seu feedback aqui..."></textarea>
-            <button id="submit-feedback">Enviar</button>
-            <button id="close-feedback">Fechar</button>
-        </div>
-    </div>
+    <footer>
+        <div class="container-info">
+            <div class="footer-row">
+                <!-- Coluna 1: Sobre a Empresa -->
+                <div class="footer-col">
+                    <h3>Sobre</h3>
+                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                </div>
 
-    <script>
-        document.getElementById("financeForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Impede o envio do formulário
+                <!-- Coluna 2: Links rápidos -->
+                <div class="footer-col">
+                    <h3>Links rápidos</h3>
+                    <a href="{% url 'inicio' %}">Home</a>
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Contato</a>
+                </div>
 
-            // Captura os valores dos campos
-            var income = document.getElementById("income").value;
-            var fixedExpenses = document.getElementById("fixedExpenses").value;
-            var variableExpenses = document.getElementById("variableExpenses").value;
-            var investments = document.getElementById("investments").value;
-            var debts = document.getElementById("debts").value;
-            var financialGoal = document.getElementById("financialGoal").value;
-
-            // Atualiza os elementos de resumo com os valores inseridos
-            document.getElementById("rendaMensal").textContent = `R$ ${parseFloat(income).toFixed(2)}`;
-            document.getElementById("gastosFixos").textContent = `R$ ${parseFloat(fixedExpenses).toFixed(2)}`;
-            document.getElementById("gastosVariaveis").textContent = `R$ ${parseFloat(variableExpenses).toFixed(2)}`;
-            document.getElementById("investimentos").textContent = `R$ ${parseFloat(investments).toFixed(2)}`;
-            document.getElementById("dividas").textContent = `R$ ${parseFloat(debts).toFixed(2)}`;
-            document.getElementById("objetivoFinanceiro").textContent = financialGoal || "Defina um objetivo";
-        });
-    </script>
-
-    <!-- Rodapé -->
-<footer>
-    <div class="container-info">
-        <div class="footer-row">
-            <!-- Coluna 1: Sobre a Empresa -->
-            <div class="footer-col">
-                <h3>Sobre</h3>
-                <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                <!-- Coluna 3: Contato -->
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <p>Email: morecash270@gmail.com</p>
+                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+                </div>
             </div>
 
-            <!-- Coluna 2: Links rápidos -->
-            <div class="footer-col">
-                <h3>Links rápidos</h3>
-                <a href="">Home</a>
-                <a href="">Sobre Nós</a>
-                <a href="">Serviços</a>
-                <a href="">Contato</a>
+            <!-- Redes sociais -->
+            <div class="social-icons">
+                <a href="#" target="_blank">🔗</a>
+                <a href="#" target="_blank">📘</a>
+                <a href="#" target="_blank">🐦</a>
+                <a href="#" target="_blank">📸</a>
             </div>
 
-            <!-- Coluna 3: Contato -->
-            <div class="footer-col">
-                <h3>Contato</h3>
-                <p>Email: morecash270@gmail.com</p>
-                <p>Telefone: (81) 90505-8282</p>
-                <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
             </div>
         </div>
+    </footer>
 
-        <!-- Redes sociais -->
-        <div class="social-icons">
-            <a href="#" target="_blank">🔗</a>
-            <a href="#" target="_blank">📘</a>
-            <a href="#" target="_blank">🐦</a>
-            <a href="#" target="_blank">📸</a>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-        </div>
-    </div>
-</footer>
-
-    <script src="/scripts/inicio.js"></script>
+    <!-- <script src="{% static 'core/scripts/inicio.js' %}"></script> -->
 </body>
-
 </html>

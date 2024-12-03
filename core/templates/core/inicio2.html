@@ -21,8 +21,8 @@
     <nav class="nav-bar">
         <ul class="list-menu">
             <li><a href="{% url 'inicio2' %}">Início</a></li>
-            <li><a href="{% url 'controle_financas' %}">Finanças Pessoais</a></li>
-            <li><a href="{% url 'pequenos_negocios' %}">Pequenos Negócios</a></li>
+            <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
+            <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
         </ul>
 
         <li class="User-Menu">
@@ -31,19 +31,19 @@
                 <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'adicionar_conta' %}">Adicionar Conta</a></li>
+                <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'config_banco' %}">Configurações do Banco</a></li>
+                <li class="user-men"><a href="{% url 'banco' %}">Configurações da Conta</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="{% url 'rec_senha' %}">Esqueci Minha Senha</a></li>
+                <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
                 <br>
                 <hr>
                 <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
                 <br>
                 <hr>
-                <li class="user-men"><a href="#sair">Sair</a></li>
+                <li class="user-men"><a href="{% url 'inicio' %}">Sair</a></li>
             </ul>
         </li>
     </nav>
@@ -62,7 +62,6 @@
     <!-- Conteúdo abaixo do banner -->
     <div class="content">
         <h1>Bem-vindo ao nosso site!</h1>
-        <p>O conteúdo do seu site começa aqui.</p>
         <p>Veja mais informações sobre seus serviços abaixo.</p>
     </div>
 
@@ -72,7 +71,28 @@
             <div class="content-wrapper">
                 <div class="coluna-texto">
                     <h2>Finanças Pessoais</h2>
-                    <p>O que são finanças pessoais? Finanças pessoais são a gestão eficiente do seu dinheiro, o que inclui orçamento, poupança, investimento e planejamento para alcançar estabilidade e metas financeiras pessoais...</p>
+                    <p>O que são finanças pessoais?
+                        Finanças pessoais são a gestão eficiente do seu dinheiro, o que inclui orçamento, poupança,
+                        investimento e planejamento para alcançar estabilidade e metas financeiras pessoais.
+
+                        O conceito de finanças pessoais abrange todas as atividades que envolvem dinheiro e decisões
+                        financeiras de uma pessoa ou família.
+
+                        Ele pode se referir à disciplina que estuda os conceitos da organização financeira pessoal e
+                        também à indústria que se dedica a oferecer soluções para a gestão das finanças.
+
+                        De qualquer forma, as finanças pessoais estão relacionadas ao orçamento doméstico, controle de
+                        gastos, investimentos, uso do crédito, planejamento da aposentadoria e outras questões que
+                        determinam a sua relação com o dinheiro.
+
+                        Também fazem parte desse conceito a educação financeira, o planejamento tributário pessoal e o
+                        relacionamento com instituições como bancos, corretoras de investimentos e fintechs.
+
+                        Em resumo, tudo o que envolve dinheiro e patrimônio na sua vida pessoal está dentro do escopo
+                        das finanças pessoais.
+
+                        Por isso, é fundamental se aprofundar nesse conceito para gerenciar melhor seus recursos e
+                        alcançar objetivos, como a compra de bens, a prosperidade e a independência financeira.</p>
                 </div>
                 <div class="coluna-imagem">
                     <img src="{% static 'core/img/9.png' %}" alt="Imagem Finanças Pessoais">
@@ -99,15 +119,37 @@
 
     <!-- Parágrafo sobre Pequenos Negócios -->
     <section id="conteudo">
-        <h2>Pequenos Negócios: O Motor da Economia</h2>
-        <p>Os pequenos negócios desempenham um papel fundamental em qualquer economia...</p>
-        <h3>A Importância dos Pequenos Negócios</h3>
-        <p>Em um cenário global, os pequenos negócios são considerados o motor da economia...</p>
+        Os pequenos negócios desempenham um papel fundamental em qualquer economia, especialmente em países em desenvolvimento. Eles são, muitas vezes, o primeiro passo para empreendedores que buscam realizar seus sonhos, gerar emprego e fomentar o crescimento local. Apesar das dificuldades, os pequenos negócios representam uma grande parte da força de trabalho em muitos lugares e são responsáveis por uma grande parcela do PIB (Produto Interno Bruto) de diversos países.</p>
+
+        <h2>A Importância dos Pequenos Negócios</h2>
+        <p>Em um cenário global, os pequenos negócios são considerados o motor da economia. Eles são responsáveis por gerar milhões de empregos ao redor do mundo, além de promoverem inovação e contribuir para a diversidade dos mercados. Em muitos países, essas empresas representam a maior parte das empresas ativas, empregando uma grande parcela da população.</p>
+
+        <p>Esses negócios variam desde pequenas lojas, como mercearias e restaurantes, até startups inovadoras em tecnologia. A flexibilidade e a agilidade são algumas das características que permitem a esses pequenos empreendedores se adaptarem rapidamente às mudanças de mercado, ao contrário das grandes corporações, que muitas vezes enfrentam dificuldades para implementar mudanças rápidas.</p>
+
+        <h2>Desafios para os Pequenos Negócios</h2>
+        <p>Embora os pequenos negócios sejam vitais para a economia, eles também enfrentam uma série de desafios que podem dificultar seu crescimento e longevidade. Entre os principais obstáculos estão:</p>
+
+        <p>
+            <strong>Acesso a Financiamento:</strong> Pequenos empresários muitas vezes têm dificuldades em conseguir crédito, devido ao risco percebido pelos bancos e investidores. Sem um bom acesso a financiamentos, fica difícil expandir, contratar mais funcionários ou investir em tecnologia e melhorias. <br>
+            <strong>Concorrência com Grandes Empresas:</strong> Muitos pequenos negócios têm dificuldades em competir com grandes empresas que têm mais recursos, economias de escala e uma base de clientes consolidada. Isso pode tornar mais difícil para os pequenos negócios se manterem competitivos, especialmente em mercados saturados. <br>
+            <strong>Gestão de Fluxo de Caixa:</strong> A falta de controle financeiro é outro grande desafio. Muitos pequenos negócios falham devido à má gestão do fluxo de caixa, onde os donos acabam gastando mais do que podem ou não conseguem planejar adequadamente as finanças. <br>
+            <strong>Tecnologia e Inovação:</strong> O rápido avanço da tecnologia pode ser um desafio para os pequenos negócios que não têm os recursos para investir em inovação. Manter-se atualizado com as últimas tendências tecnológicas pode ser difícil, mas é fundamental para a sobrevivência em mercados cada vez mais digitais.</p>
     </section>
 
     <div id="conteudo">
         <h2>Conteúdo</h2>
-        <p>Este site é um projeto integrador desenvolvido como parte da conclusão do curso de programação realizado pelo projeto transforme-se...</p>
+        <p>Este site é um projeto integrador desenvolvido como parte da conclusão do curso de programação realizado pelo
+            projeto transforme-se. Durante a nossa jornada recebemos uma ajuda de custo e tivemos a oportunidade de
+            aprender como gerenciar nosso dinheiro com aulas de educação financeira, o que inspirou a criação desse
+            site.</p>
+
+        <p>Nosso objetivo é oferecer uma plataforma acessível, prática e eficiente. Sabemos que muitas pessoas não tem
+            um controle financeiro e nem tiveram a oportunidade de aprender a lidar com finanças, estamos aqui para
+            ajudar e fazer com que o dinheiro que muitas vezes é pouco possa render mais.</p>
+
+        <p>Os usuários poderão se cadastrar e escolher entre organizar suas finanças pessoais ou as de um pequeno
+            negócio. Para garantir acessibilidade, o sistema contará com explicações detalhadas. Com diversas
+            funcionalidades que ajudem os usuários a gerenciar suas finanças de forma eficaz.</p>
     </div>
 
     <!-- Feedback -->
@@ -129,16 +171,18 @@
             <!-- Coluna 1: Sobre a Empresa -->
             <div class="footer-col">
                 <h3>Sobre</h3>
-                <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                <p>Somos uma empresa apaixonada por tecnologia e inovação. Criamos soluções para facilitar a gestão de
+                    finanças pessoais e pequenos negócios, com o objetivo de ajudar nossos usuários a conquistar sua
+                    independência financeira.</p>
             </div>
 
             <!-- Coluna 2: Links rápidos -->
             <div class="footer-col">
                 <h3>Links rápidos</h3>
                 <a href="{% url 'inicio' %}">Home</a>
-                <a href="{% url 'sobre_nos' %}">Sobre Nós</a>
-                <a href="{% url 'servicos' %}">Serviços</a>
-                <a href="{% url 'contato' %}">Contato</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Serviços</a>
+                <a href="#">Contato</a>
             </div>
 
             <!-- Coluna 3: Contato -->
@@ -164,7 +208,7 @@
         </div>
     </div>
 </footer>
-    
+
     <script src="{% static 'core/scripts/inicio.js' %}"></script>
 </body>
 

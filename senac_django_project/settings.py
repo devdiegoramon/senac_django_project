@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx
 DEBUG = False
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['senac-django-project.vercel.app', '.vercel.app', '127.0.0.1', 'localhost', '127.0.0.1:8000']
 
 # URLs para login, redirecionamento após login e logout.
 LOGIN_URL = '/accounts/login/'  # URL para a página de login
@@ -34,7 +34,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE define os componentes de middleware usados no projeto. 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise precisa estar logo após o SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

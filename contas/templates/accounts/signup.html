@@ -1,59 +1,120 @@
-<!-- signup.html -->
-<h2>Cadastro</h2>
+{% load static %}
 
-<form method="post">
-    
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-    <div class="form-group">
-        <label for="{{ form.username.id_for_label }}">Username:</label>
-        {{ form.username }}
-        {% if form.username.errors %}
-            <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoreCash - Cadastro</title>
+    <!-- Usando a tag static para referenciar o arquivo CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/cadastro.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Cadastro</h1>
+    <div class="Formulario">
+        <form method="POST">
+            {% csrf_token %}  <!-- Token CSRF para proteção de formulários POST no Django -->
+
+            <div class="User">
+                <label for="{{ form.email.id_for_label }}">Email/Usuario:</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-    </div>
 
-    <div class="form-group">
-        <label for="{{ form.email.id_for_label }}">Email Address:</label>
-        {{ form.email }}
-        {% if form.email.errors %}
-            <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+            <div class="name">
+                <label for="{{ form.username.id_for_label }}">Nome de Usuário:</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-    </div>
 
-    <div class="form-group">
-        <label for="{{ form.password1.id_for_label }}">Password:</label>
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-            <div class="invalid-feedback">
-                {% for error in form.password1.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+            <div class="cpf">
+                <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+                {{ form.cpf }}
+                {% if form.cpf.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.cpf.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-    </div>
 
-    <div class="form-group">
-        <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-            <div class="invalid-feedback">
-                {% for error in form.password2.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+            <div class="date">
+                <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
+                {{ form.data_nascimento }}
+                {% if form.data_nascimento.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.data_nascimento.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-    </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+            <div class="password">
+                <label for="{{ form.password1.id_for_label }}">Senha:</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-<p>Já tem conta? <a href="{% url 'login' %}">Entre aqui</a></p>
+                <br>
+
+                <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <a class="volte" href="{% url 'login' %}">Volte ao login!</a>  <!-- link para a página de login -->
+            <a class="volte" href="{% url 'inicio' %}">Voltar.</a>  <!-- link para a página inicial -->
+
+            <div class="button">
+                <button type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>  
+
+    <main class="quadrado">
+        <div class="logos">
+            <label for="logo" class="logo1">
+                <!-- Usando a tag static para referenciar a imagem do Google -->
+                <img src="{% static 'core/img/icons8-google-logo-48.png' %}" alt="">
+                <a href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=AcMMx-fSIoU1OPoVBVU9MUl4b8BYp8siWhKezRLVBGwHigeikIuXCfR0jIl9l4nmh7BgX43oQWwSbg&ddm=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Cadastrar com Google</a>
+            </label>
+            <label for="logo1" class="logo2">
+                <!-- Usando a tag static para referenciar a imagem do Facebook -->
+                <img src="{% static 'core/img/icons8-facebook-novo-48.png' %}" alt="">
+                <a href="https://facebook.com">Cadastrar com Facebook</a>
+            </label>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Bancário - Adicionar Conta</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/adicionar-c.css' %}"> <!-- Link para o CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="container">
+        <div class="title">
+            <a href="{% url 'inicio' %}">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo"> <!-- Link para a imagem -->
+            </a>
+        </div>
+        <nav class="nav-bar">
+            <ul class="list-menu">
+                <li><a href="{% url 'inicio2' %}">Início</a></li>
+                <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
+            </ul>
+            <li class="User-Menu">
+                <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
+                <ul class="dropdown" id="user-dropdown">
+                    <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'altsenha' %}">Esqueci Minha Senha</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
+                    <br>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'inicio' %}">Sair</a></li>
+                </ul>
+            </li>
+        </nav>
+    </header>
+
+    <div class="conteiner">
+        <h1>Adicionar Conta de Usuário</h1>
+        <form id="formulario" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a href="{% url 'signup' %}">
+            <button type="button">Cadastrar Conta</button>
+            </a>
+            <a href="{% url 'inicio2' %}">
+                <button type="button" class="voltar-btn">Voltar</button>
+            </a>
+        </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container-info">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>Sobre</h3>
+                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links rápidos</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Contato</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <p>Email: morecash270@gmail.com</p>
+                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank">🔗</a>
+                <a href="#" target="_blank">📘</a>
+                <a href="#" target="_blank">🐦</a>
+                <a href="#" target="_blank">📸</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'core/scripts/inicio.js' %}"></script>
+</body>
+</html>

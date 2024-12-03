@@ -4,157 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Controle de Vendas - Pequeno Negócio</title>
     <link rel="stylesheet" href="{% static 'core/css/pnegocios.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-<!-- Cabeçalho -->
-<header class="container">
-    <div class="title">
-        <a href="{% url 'inicio2' %}">
-            <img src="{% static 'core/img/logo.png' %}" alt="Logo">
-        </a>
-    </div>
-    <nav class="nav-bar">
-        <ul class="list-menu">
-            <li><a href="{% url 'inicio2' %}">Início</a></li>
-            <li><a href="{% url 'controle_financas' %}">Finanças Pessoais</a></li>
-            <li><a href="{% url 'pequenos_negocios' %}">Pequenos Negócios</a></li>
-        </ul>
-
-        <li class="User-Menu">
-            <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
-            <ul class="dropdown" id="user-dropdown">
-                <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
-                <br>
-                <hr>
-                <li class="user-men"><a href="{% url 'adicionar_conta' %}">Adicionar Conta</a></li>
-                <br>
-                <hr>
-                <li class="user-men"><a href="{% url 'config_banco' %}">Configurações do Banco</a></li>
-                <br>
-                <hr>
-                <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
-                <br>
-                <hr>
-                <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
-                <br>
-                <hr>
-                <li class="user-men"><a href="{% url 'logout' %}">Sair</a></li>
+    <!-- Cabeçalho -->
+    <header class="container">
+        <div class="title">
+            <a href="{% url 'inicio2' %}">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo">
+            </a>
+        </div>
+        <nav class="nav-bar">
+            <ul class="list-menu">
+                <li><a href="{% url 'inicio2' %}">Início</a></li>
+                <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
             </ul>
-        </li>
-    </nav>
-</header>
+            <li class="User-Menu">
+                <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
+                <ul class="dropdown" id="user-dropdown">
+                    <li class="user-men"><a href="{% url 'perfil' %}">Editar Perfil</a></li>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'banco' %}">Configurações do Banco</a></li>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'recsenha' %}">Esqueci Minha Senha</a></li>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'suporte' %}">Suporte</a></li>
+                    <hr>
+                    <li class="user-men"><a href="{% url 'inicio' %}">Sair</a></li>
+                </ul>
+            </li>
+        </nav>
+    </header>
 
-<!-- Banner -->
-<div class="banner">
-    <div class="banner-images">
-        <img src="{% static 'core/img/BANNER.png' %}" alt="banner">
-        <img src="{% static 'core/img/MORE CASH (1).png' %}" alt="Imagem 2">
-        <img src="{% static 'core/img/more cash.png' %}" alt="Imagem 3">
-    </div>
-</div>
+    <!-- Mensagem de boas-vindas -->
+    <header>
+        <div class="info">
+            <span>Bem-vindo ao sistema de controle de vendas</span>
+        </div>
+    </header>
 
-<!-- Conteúdo abaixo do banner -->
-<div class="content">
-    <h1>Bem-vindo ao nosso site!</h1>
-    <p>O conteúdo do seu site começa aqui.</p>
-    <p>Veja mais informações sobre seus serviços abaixo.</p>
-</div>
-
-<!-- Seção de Finanças -->
-<section id="financas" class="financas">
-    <div class="parallax-container">
-        <div class="content-wrapper">
-            <div class="coluna-texto">
-                <h2>Finanças Pessoais</h2>
-                <p>O que são finanças pessoais? Finanças pessoais são a gestão eficiente do seu dinheiro...</p>
+    <!-- Conteúdo principal -->
+    <div class="conteiner">
+        <!-- Resumo Rápido -->
+        <section class="quick-summary">
+            <div class="summary-item">
+                <strong>Total de Vendas do Dia:</strong> R$ {{ total_vendas|default:"0,00" }}
             </div>
-            <div class="coluna-imagem">
-                <img src="{% static 'core/img/9.png' %}" alt="Imagem Finanças Pessoais">
+            <div class="summary-item">
+                <strong>Vendas de Hoje:</strong> {{ vendas_hoje|default:0 }}
+            </div>
+            <div class="summary-item">
+                <strong>Lucro Estimado:</strong> R$ {{ lucro_estimado|default:"0,00" }}
+            </div>
+        </section>
+
+        <!-- Tabela de Vendas -->
+        <section class="sales-table">
+            <h2>Vendas Recentes</h2>
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th>ID Venda</th>
+                        <th>Data</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Ações</th>  <!-- Coluna para ações (Excluir) -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venda in vendas %}
+                    <tr id="venda-{{ venda.id }}">
+                        <td>{{ venda.id }}</td>
+                        <td>{{ venda.data_venda|date:"d/m/Y" }}</td>  <!-- Corrigido -->
+                        <td>{{ venda.produto }}</td>
+                        <td>{{ venda.quantidade }}</td>
+                        <td>R$ {{ venda.preco_unitario|floatformat:2 }}</td>
+                        <td>R$ {{ venda.total|floatformat:2 }}</td>
+                        <td>{{ venda.status }}</td>
+                        <td>
+                            <!-- Formulário para excluir venda -->
+                            <form method="POST" action="{% url 'excluir_venda' venda.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8">Nenhuma venda registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Adicionar Nova Venda -->
+        <section class="add-sale">
+            <h2>Adicionar Nova Venda</h2>
+            <form id="addSaleForm" method="POST" action="{% url 'adicionar_venda' %}">
+                {% csrf_token %}
+                <label for="productName">Produto:</label>
+                <input type="text" id="productName" name="product_name" placeholder="Nome do produto" required>
+                
+                <label for="quantity">Quantidade:</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Quantidade" required>
+                
+                <label for="unitPrice">Preço Unitário:</label>
+                <input type="number" id="unitPrice" name="unit_price" placeholder="Preço Unitário" required>
+                
+                <button type="submit">Adicionar Venda</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container-info">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h3>Sobre</h3>
+                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links rápidos</h3>
+                    <a href="{% url 'inicio2' %}">Home</a>
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Contato</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <p>Email: morecash270@gmail.com</p>
+                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank">🔗</a>
+                <a href="#" target="_blank">📘</a>
+                <a href="#" target="_blank">🐦</a>
+                <a href="#" target="_blank">📸</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
             </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<!-- Imagens Relacionadas -->
-<section class="imagens-trio">
-    <h2>Imagens Relacionadas</h2>
-    <div class="imagens-container">
-        <div class="imagem-coluna">
-            <img src="{% static 'core/img/8.png' %}" alt="Imagem 1">
-        </div>
-        <div class="imagem-coluna">
-            <img src="{% static 'core/img/7.png' %}" alt="Imagem 2">
-        </div>
-        <div class="imagem-coluna">
-            <img src="{% static 'core/img/6.png' %}" alt="Imagem 3">
-        </div>
-    </div>
-</section>
-
-<!-- Parágrafo sobre Pequenos Negócios -->
-<section id="conteudo">
-    <h2>Pequenos Negócios: O Motor da Economia</h2>
-    <p>Os pequenos negócios desempenham um papel fundamental em qualquer economia...</p>
-</section>
-
-<div id="conteudo">
-    <h2>Conteúdo</h2>
-    <p>Este site é um projeto integrador desenvolvido como parte da conclusão do curso...</p>
-</div>
-
-<!-- Feedback -->
-<div id="feedback-wrapper">
-    <button id="feedback-btn">Deixe seu Feedback</button>
-
-    <div id="feedback-form-container">
-        <h2>Nos envie seu feedback!</h2>
-        <textarea id="feedback-text" placeholder="Digite seu feedback aqui..."></textarea>
-        <button id="submit-feedback">Enviar</button>
-        <button id="close-feedback">Fechar</button>
-    </div>
-</div>
-
-<!-- Rodapé -->
-<footer>
-    <div class="container-info">
-        <div class="footer-row">
-            <div class="footer-col">
-                <h3>Sobre</h3>
-                <p>Somos uma empresa apaixonada por tecnologia e inovação...</p>
-            </div>
-            <div class="footer-col">
-                <h3>Links rápidos</h3>
-                <a href="{% url 'inicio2' %}">Home</a>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Serviços</a>
-                <a href="#">Contato</a>
-            </div>
-            <div class="footer-col">
-                <h3>Contato</h3>
-                <p>Email: morecash270@gmail.com</p>
-                <p>Telefone: (81) 90505-8282</p>
-                <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
-            </div>
-        </div>
-
-        <div class="social-icons">
-            <a href="#" target="_blank">🔗</a>
-            <a href="#" target="_blank">📘</a>
-            <a href="#" target="_blank">🐦</a>
-            <a href="#" target="_blank">📸</a>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-        </div>
-    </div>
-</footer>
-
-<script src="{% static 'core/scripts/inicio.js' %}"></script>
+    <script src="{% static 'core/scripts/inicio.js' %}"></script>
 </body>
-
 </html>

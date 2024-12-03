@@ -2,26 +2,15 @@ from django.db import models
 from datetime import datetime
 
 class Usuario(models.Model):
-    email = models.EmailField(unique=True)  # Adicionando unique=True para garantir que não haja emails duplicados
+    email = models.EmailField(unique=True)
     nome = models.CharField(max_length=150)
-    cpf = models.CharField(max_length=11, unique=True)  # Adicionando unique=True para garantir CPFs únicos
+    cpf = models.CharField(max_length=11, unique=True)
     data_nascimento = models.DateField(default=datetime.today)
-    senha = models.CharField(max_length=128)  # Definindo um tamanho razoável para a senha
+    senha = models.CharField(max_length=128)
 
     def __str__(self):
         return self.nome
 
-class Financas_pessoas(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='financas')
-    renda_mensal = models.DecimalField(max_digits=15, decimal_places=2)
-    gastos_fixos_mensais = models.DecimalField(max_digits=15, decimal_places=2)
-    gastos_variaveis_mensais = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_investimentos = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_dividas = models.DecimalField(max_digits=15, decimal_places=2)
-    valor_objeto_financeiro = models.DecimalField(max_digits=15, decimal_places=2)
-
-    def __str__(self):
-        return f"Finanças de {self.usuario.nome}"
 
 class Informacoes_bancarias(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='informacoes_bancarias')
@@ -54,3 +43,24 @@ class Pequeno_negocio(models.Model):
 
     def __str__(self):
         return f"Pequeno Negócio: {self.razao_social}"
+
+class Venda(models.Model):
+    produto = models.CharField(max_length=255)
+    quantidade = models.PositiveIntegerField()
+    preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    data_venda = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.total = self.quantidade * self.preco_unitario
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Venda {self.id} - {self.produto}"
+
+class Feedback(models.Model):
+    feedback = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback {self.id}"

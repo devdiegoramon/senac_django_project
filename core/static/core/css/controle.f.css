@@ -9,6 +9,86 @@
     text-decoration: none;
 }
 
+/* Formulário */
+#financasForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+input, select, textarea {
+    border: 1px solid red;
+}
+
+.financial-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.financial-table th, .financial-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.financial-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.financial-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.financial-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.financial-table td {
+    font-size: 14px;
+    color: #333;
+}
+
+
+
 :root{
     --fonte-titulo: "Montserrat", sans-serif;
     --fonte-texto: "Roboto", sans-serif;

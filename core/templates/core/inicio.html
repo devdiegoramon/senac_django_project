@@ -23,9 +23,9 @@
             <ul class="list-menu">
                 <li><a href="{% url 'inicio' %}">Início</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'cadastro' %}">Cadastra-se</a></li>
-                <li><a href="{% url 'controle.f' %}">Finanças Pessoais</a></li>
-                <li><a href="{% url 'pnegocios' %}">Pequenos Negócios</a></li>
+                <li><a href="{% url 'signup' %}">Cadastrar-se</a></li>
+                <li><a href="{% url 'signup' %}">Finanças Pessoais</a></li>
+                <li><a href="{% url 'signup' %}">Pequenos Negócios</a></li>
                 <li><a href="#conteudo" id="saiba-mais">Saiba Mais</a></li>
             </ul>
         </nav>
@@ -164,29 +164,26 @@
                         independência financeira.</p>
                 </div>
                 <div class="footer-col">
-                    <h3>Links rápidos</h3>
-                    <a href="{% url 'inicio' %}">Home</a>
-                    <a href="#">Sobre Nós</a>
-                    <a href="#">Serviços</a>
-                    <a href="#">Contato</a>
+                    <h3>Cash More</h3>
+                    
                 </div>
                 <div class="footer-col">
                     <h3>Contato</h3>
                     <p>Email: morecash270@gmail.com</p>
-                    <p>Telefone: (81) 90505-8282</p>
+                    <p>Telefone: (81) 90000-0000</p>
                     <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
                 </div>
             </div>
 
             <div class="social-icons">
-                <a href="#" target="_blank">🔗</a>
-                <a href="#" target="_blank">📘</a>
-                <a href="#" target="_blank">🐦</a>
-                <a href="#" target="_blank">📸</a>
+                <a href="{% url 'inicio' %}">Home</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Serviços</a>
+                <a href="#">Contato</a>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
+                <p>&copy; 2024 Cash More - Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

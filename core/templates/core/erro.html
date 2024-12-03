@@ -1,11 +1,13 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/erro.css">
+    <!-- Utilizando a tag static para o arquivo CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/erro.css' %}">
     <title>404 - Página Não Encontrada</title>
-    
 </head>
 <body>
     <header>
@@ -16,26 +18,26 @@
     <main class="erro-404">
         <section class="erro-container">
             <div class="erro-img">
-                <img src="/img/erro.png" alt="Imagem de erro 404">
+                <!-- Utilizando a tag static para a imagem -->
+                <img src="{% static 'core/img/erro.png' %}" alt="Imagem de erro 404">
             </div>
             <h2>Página Não Encontrada</h2>
             <p>A página que você está procurando não existe ou foi movida. Por favor, tente uma das opções abaixo:</p>
             <div class="sugestoes">
-                <a href="/HTML/inicio.html">Voltar para a página inicial</a>
+                <!-- Usando a tag url para linkar dinamicamente -->
+                <a href="{% url 'inicio' %}">Voltar para a página inicial</a>
+                <br>
+                <a href="{% url 'login' %}">Voltar para o login</a>
             </div>
         </section>
     </main>
-    
 
-
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-        </div>
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
     </div>
 
-   
-    <script src="#"></script>
+    <!-- Caso precise de algum script, pode adicionar com a tag static -->
+    <script src="{% static 'scripts/seu_script.js' %}"></script>
 </body>
 </html>
