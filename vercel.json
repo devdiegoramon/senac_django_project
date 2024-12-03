@@ -1,18 +1,19 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "senac_django_project/wsgi.py",
+      "src": "api/index.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/senac_django_project/static/$1"
+      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/senac_django_project/wsgi.py"
+      "dest": "api/index.py"
     }
   ]
 }
