@@ -1,180 +1,45 @@
+<!-- controle.f2.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Finanças Pessoais</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'core/css/controle.f.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Controle de Transações</title>
 </head>
-
 <body>
-    <header class="container">
-        <div class="title">
-            <a href="{% url 'inicio2' %}">
-                <img src="{% static 'core/img/logo.png' %}" alt="Logo">
-            </a>
+    <h1>Adicionar Nova Transação</h1>
+
+    <!-- Formulário para adicionar a transação -->
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="descricao">Descrição</label>
+        <input type="text" id="descricao" name="descricao" required><br>
+
+        <label for="valor">Valor</label>
+        <input type="number" id="valor" name="valor" step="0.01" required><br>
+
+        <label for="categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria"><br>
+
+        <button type="submit">Salvar Transação</button>
+    </form>
+
+    <!-- Exibindo as transações existentes -->
+    <h2>Transações Existentes</h2>
+    <ul>
+        {% for transacao in transacoes %}
+            <li>{{ transacao.descricao }} - R$ {{ transacao.valor }} ({{ transacao.categoria }})</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Exibindo mensagens de sucesso ou erro -->
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
         </div>
-        <nav class="nav-bar">
-            <ul class="list-menu">
-                <li><a href="{% url 'inicio2' %}">Início</a></li>
-                <li><a href="{% url 'controle.f2' %}">Finanças Pessoais</a></li>
-                <li><a href="{% url 'pnegocios2' %}">Pequenos Negócios</a></li>
-            </ul>
-
-            <li class="User-Menu">
-                <a href="#" id="user-icon"><i class="fa-solid fa-user"></i></a>
-                <ul class="dropdown" id="user-dropdown">
-                    <li><a href="{% url 'perfil' %}">Editar Perfil</a></li>
-                    <li><a href="{% url 'adicionar_c' %}">Adicionar Conta</a></li>
-                    <li><a href="{% url 'banco' %}">Configurações do Banco</a></li>
-                    <li><a href="{% url 'altsenha' %}">Esqueci Minha Senha</a></li>
-                    <li><a href="{% url 'suporte' %}">Suporte</a></li>
-                    <li><a href="{% url 'inicio' %}">Sair</a></li>
-                </ul>
-            </li>
-        </nav>
-    </header>
-    <section class="financial-control">
-        <h2>Controle de Finanças Pessoais</h2>
-    
-        {% if financas %}
-            <table class="financial-table">
-                <thead>
-                    <tr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Renda Mensal</td>
-                        <td>R$ {{ financas.renda_mensal|floatformat:2 }}</td>
-                    </tr>
-                    <tr>
-                        <td>Gastos Fixos Mensais</td>
-                        <td>R$ {{ financas.gastos_fixos|floatformat:2 }}</td>
-                    </tr>
-                    <tr>
-                        <td>Gastos Variáveis Mensais</td>
-                        <td>R$ {{ financas.gastos_variaveis|floatformat:2 }}</td>
-                    </tr>
-                    <tr>
-                        <td>Investimentos</td>
-                        <td>R$ {{ financas.investimentos|floatformat:2 }}</td>
-                    </tr>
-                    <tr>
-                        <td>Dívidas</td>
-                        <td>R$ {{ financas.dividas|floatformat:2 }}</td>
-                    </tr>
-                    <tr>
-                        <td>Objetivo Financeiro</td>
-                        <td>{{ financas.objetivo_financeiro }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        {% else %}
-            <p>Não há informações financeiras registradas.</p>
-        {% endif %}
-    </section>
-    
-    
-        <!-- Formulário para adicionar/atualizar dados financeiros -->
-        <form method="post" action="{% url 'controle_financas' %}">
-            {% csrf_token %}
-            
-            <!-- Exibe os erros do formulário -->
-            <div class="alert alert-danger" role="alert">
-                {% if form.errors %}
-                    <ul>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                {% endif %}
-            </div>
-        
-            <!-- Campos do Formulário -->
-            <div class="form-group">
-                <label for="renda_mensal">Renda Mensal:</label>
-                {{ form.renda_mensal }}
-            </div>
-        
-            <div class="form-group">
-                <label for="gastos_fixos">Gastos Fixos:</label>
-                {{ form.gastos_fixos }}
-            </div>
-        
-            <div class="form-group">
-                <label for="gastos_variaveis">Gastos Variáveis:</label>
-                {{ form.gastos_variaveis }}
-            </div>
-        
-            <div class="form-group">
-                <label for="investimentos">Investimentos:</label>
-                {{ form.investimentos }}
-            </div>
-        
-            <div class="form-group">
-                <label for="dividas">Dívidas:</label>
-                {{ form.dividas }}
-            </div>
-        
-            <div class="form-group">
-                <label for="objetivo_financeiro">Objetivo Financeiro:</label>
-                {{ form.objetivo_financeiro }}
-            </div>
-        
-            <!-- Botão para salvar os dados -->
-            <button type="submit" class="btn btn-success">Salvar</button>
-        </form>
-               
-    </section>
-
-    <footer>
-        <div class="container-info">
-            <div class="footer-row">
-                <!-- Coluna 1: Sobre a Empresa -->
-                <div class="footer-col">
-                    <h3>Sobre</h3>
-                    <p>Somos uma empresa apaixonada por tecnologia e inovação. Nosso objetivo é entregar soluções digitais de alta qualidade para nossos clientes.</p>
-                </div>
-
-                <!-- Coluna 2: Links rápidos -->
-                <div class="footer-col">
-                    <h3>Links rápidos</h3>
-                    <a href="{% url 'inicio' %}">Home</a>
-                    <a href="#">Sobre Nós</a>
-                    <a href="#">Serviços</a>
-                    <a href="#">Contato</a>
-                </div>
-
-                <!-- Coluna 3: Contato -->
-                <div class="footer-col">
-                    <h3>Contato</h3>
-                    <p>Email: morecash270@gmail.com</p>
-                    <p>Telefone: (81) 90505-8282</p>
-                    <p>Endereço: AV. Viscinde Suassuana, 500, Recife - PE</p>
-                </div>
-            </div>
-
-            <!-- Redes sociais -->
-            <div class="social-icons">
-                <a href="#" target="_blank">🔗</a>
-                <a href="#" target="_blank">📘</a>
-                <a href="#" target="_blank">🐦</a>
-                <a href="#" target="_blank">📸</a>
-            </div>
-
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 Empresa - Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- <script src="{% static 'core/scripts/inicio.js' %}"></script> -->
+    {% endif %}
 </body>
 </html>

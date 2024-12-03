@@ -1,5 +1,6 @@
 from django import forms
 from .models import Financas
+from .models import Venda
 
 class FinancasForm(forms.ModelForm):
     class Meta:
@@ -13,3 +14,14 @@ class FinancasForm(forms.ModelForm):
             'dividas': forms.NumberInput(attrs={'class': 'form-control'}),
             'objetivo_financeiro': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+class VendaForm(forms.ModelForm):
+    class Meta:
+        model = Venda
+        fields = ['produto', 'quantidade', 'preco_unitario']
+
+    def clean_quantidade(self):
+        quantidade = self.cleaned_data.get('quantidade')
+        if quantidade <= 0:
+            raise forms.ValidationError("A quantidade deve ser maior que zero.")
+        return quantidade

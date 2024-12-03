@@ -1,15 +1,11 @@
 from django.urls import path
 from . import views
-from django.conf.urls import handler404
-from core import views
-
-handler404 = views.pagina_nao_encontrada
 
 urlpatterns = [
-    path('', views.inicio, name='inicio'),  # Página inicial
+    path('', views.controle_financas, name='controle_vendas'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
-    path('controle.f/', views.controlef_view, name='controle.f'),
+    path('controle.f/', views.controlef_view, name='controle_f'),
     path('pnegocios/', views.pnegocios_view, name='pnegocios'),
     path('recsenha/', views.recsenha_view, name='recsenha'),
     path('suporte/', views.suporte_view, name='suporte'),
@@ -20,12 +16,11 @@ urlpatterns = [
     path('altsenha/', views.altsenha, name='altsenha'),
     path('altemail/', views.altemail, name='altemail'),
     path('alteraemail1/', views.altemail, name='altemail1'),
-    path('controle.f2/', views.controlef2_view, name='controle.f2'),
+    path('controle.f2/', views.controlef2_view, name='controle_f2'),
     path('erro/', views.erro, name='erro'),
     path('pnegocios2/', views.pnegocios2, name='pnegocios2'),
+    path('adicionar_transacao/', views.adicionar_transacao, name='adicionar_transacao'),
     path('controle_financas/', views.controle_financas, name='controle_financas'),
-  # Página principal de vendas
-    path('', views.controle_financas, name='controle_vendas'),
-    path('venda/excluir/<int:venda_id>/', views.excluir_venda, name='excluir_venda'),
-
 ]
+
+handler404 = views.pagina_nao_encontrada

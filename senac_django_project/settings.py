@@ -8,10 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx1rqc@pz*4oj1*in4aa3@o67g6(gg)o7')
 
 # Em modo de produção, a variável DEBUG deve ser definida como False para não expor informações sensíveis.
-DEBUG = True
+DEBUG = False
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
-ALLOWED_HOSTS = ['senac-django-project.vercel.app', '.vercel.app', '127.0.0.1', 'localhost', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['*']
 
 # URLs para login, redirecionamento após login e logout.
 LOGIN_URL = '/accounts/login/'  # URL para a página de login
@@ -31,10 +31,10 @@ INSTALLED_APPS = [
     'core',  # App principal do seu projeto
 ]
 
-# MIDDLEWARE define os componentes de middleware usados no projeto. 
+# MIDDLEWARE define os componentes de middleware usados no projeto.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -116,7 +116,7 @@ STATICFILES_DIRS = [
 ]
 
 # Configuração para servir os arquivos estáticos em produção
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Adicione suporte à compressão e cache dos arquivos estáticos
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
