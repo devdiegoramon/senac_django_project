@@ -1,23 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "senac_django_project/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb",
-          "runtime": "python3.11"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "senac_django_project/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.11"
       }
-    ],
-    "routes": [
-      {
-        "src": "/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "senac_django_project/wsgi.py"
-      }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "senac_django_project/wsgi.py"
+    }
+  ]
+}
