@@ -1,21 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
-from .models import Financas, Venda  # Certifique-se de importar o modelo Venda
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.http import Http404
 from django.http import JsonResponse
+from .models import Financas, Venda, Transacao
+from .forms import FinancasForm
+import logging
 
-
-def inicio(request):
-    return render(request, 'core/inicio.html')
-
-def login_view(request):
-    return render(request, 'contas/login.html')
-
-def signup_view(request):
-    return render(request, 'contas/signup.html')
+logger = logging.getLogger(__name__)
 
 def controlef_view(request):
     return render(request, 'core/controle.f.html')
@@ -47,33 +38,75 @@ def altsenha(request):
 def altemail(request):
     return render(request, 'core/altemail.html')
 
-def alteraemail1(request):
-    return render(request, 'core/alteraemail1.html')
-
 def controlef2_view(request):
+    # Lógica para exibir a página controlef2
     return render(request, 'core/controle.f2.html')
 
 def erro(request):
+    # Exibe uma página de erro
     return render(request, 'core/erro.html')
+
 
 def pnegocios2(request):
     return render(request, 'core/pnegocios2.html')
 
+
+# Função para adicionar transação
+def adicionar_transacao(request):
+    if request.method == 'POST':
+        descricao = request.POST.get('descricao')
+        valor = request.POST.get('valor')
+        categoria = request.POST.get('categoria')
+
+        logger.debug(f"Recebendo transação - Descrição: {descricao}, Valor: {valor}, Categoria: {categoria}")
+
+        if descricao and valor:
+            try:
+                # Salvar a transação no banco de dados
+                Transacao.objects.create(descricao=descricao, valor=valor, categoria=categoria)
+                
+                # Exibir mensagem de sucesso
+                messages.success(request, 'Transação salva com sucesso!')
+                return redirect('core:adicionar')  # Substitua com o nome correto da URL
+
+            except Exception as e:
+                # Exibir mensagem de erro
+                messages.error(request, f'Ocorreu um erro ao salvar a transação: {e}')
+        else:
+            # Exibir mensagem de erro caso faltem campos obrigatórios
+            messages.error(request, 'Por favor, preencha todos os campos obrigatórios.')
+
+    # Buscar todas as transações
+    transacoes = Transacao.objects.all()
+
+    return render(request, 'core/adicionar_transacao.html', {'transacoes': transacoes})
+
+# Função para exibir a página de inicio
+def inicio(request):
+    return render(request, 'core/inicio.html')
+
+# Função de login
+def login_view(request):
+    return render(request, 'contas/login.html')
+
+# Função de signup
+def signup_view(request):
+    return render(request, 'contas/signup.html')
+
+# Funções para controle de finanças
 @login_required
 def controle_financas(request):
-    # Tente recuperar as finanças do usuário logado
     try:
         financas = Financas.objects.get(user=request.user)
     except Financas.DoesNotExist:
         financas = None
 
-    # Se o formulário for enviado (POST)
     if request.method == 'POST':
         form = FinancasForm(request.POST, instance=financas)
         if form.is_valid():
-            form.save()  # Salva os dados no banco de dados
+            form.save()
             messages.success(request, 'Dados financeiros atualizados com sucesso!')
-            return redirect('controle_financas')  # Redireciona para a mesma página ou outra após salvar
+            return redirect('controle_financas')
         else:
             messages.error(request, 'Por favor, corrija os erros abaixo.')
     else:
@@ -81,55 +114,49 @@ def controle_financas(request):
 
     return render(request, 'core/controle.f2.html', {'form': form, 'financas': financas})
 
-# Função para adicionar uma venda
+# Função para adicionar venda
 def adicionar_venda(request):
     if request.method == "POST":
-        # Adicionando a venda no banco de dados
-        produto = request.POST.get('product_name')
-        quantidade = request.POST.get('quantity')
-        preco_unitario = request.POST.get('unit_price')
+        produto = request.POST.get('produto')
+        quantidade = int(request.POST.get('quantidade'))
+        preco_unitario = float(request.POST.get('preco_unitario'))
+        total = quantidade * preco_unitario
 
-        # Verificar se os dados foram fornecidos
-        if produto and quantidade and preco_unitario:
-            # Convertendo para tipos numéricos apropriados
-            quantidade = int(quantidade)  # Converter quantidade para inteiro
-            preco_unitario = Decimal(preco_unitario)  # Converter preco_unitario para Decimal
+        venda = Venda.objects.create(
+            produto=produto,
+            quantidade=quantidade,
+            preco_unitario=preco_unitario,
+            total=total,
+            status='Finalizada'
+        )
 
-            # Calculando o total
-            total = preco_unitario * quantidade
+        return JsonResponse({
+            'status': 'success',
+            'id': venda.id,
+            'produto': venda.produto,
+            'quantidade': venda.quantidade,
+            'total': venda.total
+        })
 
-            # Criando e salvando a venda
-            venda = Venda(
-                produto=produto, 
-                quantidade=quantidade, 
-                preco_unitario=preco_unitario,
-                total=total
-            )
-            venda.save()
+    return JsonResponse({'status': 'error', 'message': 'Método não permitido'}, status=405)
 
-    # Recuperando todas as vendas para exibir
-    vendas = Venda.objects.all()
-
-    # Passando as vendas para o template
-    return render(request, 'core/pnegocios2.html', {'vendas': vendas})
-
-# Função para excluir uma venda
-
-
+# Função para excluir venda
 def excluir_venda(request, venda_id):
     try:
         venda = Venda.objects.get(id=venda_id)
     except Venda.DoesNotExist:
-        raise Http404("Venda não encontrada")
+        raise 404("Venda não encontrada")
 
     if request.method == 'POST':
         venda.delete()
-        return redirect('pnegocios2')  # Altere para a view correta
-    
+        return redirect('pnegocios2')
+
     return render(request, 'core/pnegocios2.html', {'venda': venda})
 
+# Função para página 404
 def pagina_nao_encontrada(request, exception):
     return render(request, 'core/erro.html', status=404)
 
+# Função para erro interno
 def erro_interno(request):
     return render(request, 'core/erro.html', status=500)
