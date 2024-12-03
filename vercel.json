@@ -14,11 +14,6 @@
     {
       "src": "/(.*)",
       "dest": "api/index.py"
-    },
-    {
-      "rewrites": [
-        { "source": "/static/(.*)", "destination": "/staticfiles/$1" }
-      ]
     }
   ]
 }
