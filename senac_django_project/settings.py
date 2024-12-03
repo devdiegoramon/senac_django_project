@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ligc=s16#4g=6u5qbnx1rqc@pz*4oj1*in4aa3@o67g6(gg)o7')
 
 # Em modo de produção, a variável DEBUG deve ser definida como False para não expor informações sensíveis.
-DEBUG = False
+DEBUG = True
 
 # A lista de hosts permitidos para o seu projeto. Em produção, você deve especificar os domínios que são permitidos para acessar o site.
 ALLOWED_HOSTS = ['senac-django-project.vercel.app', '.vercel.app', '127.0.0.1', 'localhost', '127.0.0.1:8000']
@@ -42,9 +42,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 # ROOT_URLCONF especifica o arquivo principal de URLs que mapeia as requisições HTTP para as views.
 ROOT_URLCONF = 'senac_django_project.urls'
@@ -114,8 +111,15 @@ STATIC_URL = '/static/'
 
 # STATICFILES_DIRS define onde o Django procurará arquivos estáticos adicionais durante o desenvolvimento.
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # Configuração para servir os arquivos estáticos em produção
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Adicione suporte à compressão e cache dos arquivos estáticos
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Configurações para arquivos de mídia (arquivos carregados pelos usuários).
 MEDIA_URL = '/media/'  # URL para acessar os arquivos de mídia
