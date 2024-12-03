@@ -20,8 +20,8 @@ urlpatterns = [
     path('erro/', views.erro, name='erro'),
     path('pnegocios2/', views.pnegocios2, name='pnegocios2'),
     path('controle_financas/', views.controle_financas, name='controle_financas'),
-    path('venda/excluir/<int:venda_id>/', views.excluir_venda, name='excluir_venda'),
   # Página principal de vendas
     path('', views.controle_financas, name='controle_vendas'),
+    path('venda/excluir/<int:venda_id>/', views.excluir_venda, name='excluir_venda'),
 
 ]

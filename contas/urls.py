@@ -10,4 +10,5 @@ urlpatterns = [
     path('adicionar_venda/', views.adicionar_venda, name='adicionar_venda'),
     path('adicionar_feedback/', views.adicionar_feedback, name='adicionar_feedback'),
     path('pnegocios2/', views.pnegocios2, name='pnegocios2'),
+    path('venda/excluir/<int:venda_id>/', views.excluir_venda, name='excluir_venda'),
 ]

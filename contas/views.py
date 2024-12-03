@@ -130,3 +130,15 @@ def pnegocios2(request):
     }
 
     return render(request, 'core/pnegocios2.html', context)
+
+def excluir_venda(request, venda_id):
+    try:
+        venda = Venda.objects.get(id=venda_id)
+    except Venda.DoesNotExist:
+        raise Http404("Venda não encontrada")
+
+    if request.method == 'POST':
+        venda.delete()
+        return redirect('pnegocios2')  # Altere para a view correta
+    
+    return render(request, 'core/pnegocios2.html', {'venda': venda})

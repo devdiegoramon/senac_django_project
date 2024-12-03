@@ -96,7 +96,7 @@
                             <!-- Formulário para excluir venda -->
                             <form method="POST" action="{% url 'excluir_venda' venda.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="delete-venda">Excluir</button>
+                                <button type="submit">Excluir</button>
                             </form>
                         </td>
                     </tr>

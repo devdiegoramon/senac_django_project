@@ -105,8 +105,15 @@ def adicionar_venda(request):
 
 # Função para excluir uma venda
 
+
 def excluir_venda(request, venda_id):
-    if request.method == "POST":
-        venda = get_object_or_404(Venda, id=venda_id)
+    try:
+        venda = Venda.objects.get(id=venda_id)
+    except Venda.DoesNotExist:
+        raise Http404("Venda não encontrada")
+
+    if request.method == 'POST':
         venda.delete()
-        return redirect('pnegocios2') 
+        return redirect('pnegocios2')  # Altere para a view correta
+    
+    return render(request, 'core/pnegocios2.html', {'venda': venda})
