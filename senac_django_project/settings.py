@@ -121,6 +121,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Adicione suporte à compressão e cache dos arquivos estáticos
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 # Configurações para arquivos de mídia (arquivos carregados pelos usuários).
 MEDIA_URL = '/media/'  # URL para acessar os arquivos de mídia
 MEDIA_ROOT = BASE_DIR / 'media'  # Diretório onde os arquivos de mídia serão armazenados
