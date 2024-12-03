@@ -10,11 +10,11 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgb(105, 105, 203);
     display: flex;
     justify-content: space-between; 
     align-items: center; 
     padding: 20px;
+    flex-wrap: wrap; /* Adicionando wrap para garantir que os itens podem quebrar para uma nova linha em telas menores */
 }
 
 .nav-bar {
@@ -22,12 +22,11 @@
     justify-content: center; 
     align-items: center; 
     flex-grow: 1; 
-
 }
 .list-menu a{
     border-radius: 5px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 100%;
+    font-size: 150%;
 
 }
 .list-menu a:hover{
@@ -51,7 +50,6 @@
     align-items: center;
 }
 
-
 .list-menu li {
     display: inline-block;
     margin-right: 20px; 
@@ -69,8 +67,7 @@
     transform: translateY(-10px); 
 }
 
-
-a{
+a {
     color: #000;
 }
 
@@ -91,8 +88,6 @@ img {
     border: 1px solid #000;
 }
 
-
-
 .User-Menu {
     position: relative;
 }
@@ -103,10 +98,9 @@ img {
     top: 20px; 
 }
 
-i{
-    color: #fff;
+i {
+    color: #ffffff;
 }
-
 
 .User-Menu ul.dropdown {
     display: none; 
@@ -115,7 +109,7 @@ i{
     left: -200px;
     top: 100%; 
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px; 
     padding: 10px;
@@ -125,8 +119,6 @@ i{
     transition: transform 1s ease; 
 }
 
-
-
 .User-Menu a {
     display: inline-block;
     transition: transform 0.2s ease-in-out; 
@@ -134,219 +126,6 @@ i{
 
 .User-Menu a:hover {
     transform: scale(1.1); 
-}
-
-
-
-/* Reset de Estilos Básicos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Corpo da página */
-body {
-    background-color: rgba(0, 0, 0, 0.068);
-    color: #333;
-    line-height: 1.6;
-    font-size: 16px;
-    padding: 0;
-}
-
-/* Cabeçalho */
-header {
-    background-color: #004d7a;;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    animation: fadeIn 2s ease-out;
-}
-
-header .info {
-    font-size: 20px;
-}
-
-/* Container principal */
-.conteiner {
-    margin-top: 30px;
-    animation: fadeInUp 1.5s ease-out;
-}
-
-/* Seção de resumo rápido */
-.quick-summary {
-    display: flex; /* Exibe os itens lado a lado */
-    justify-content: space-between; /* Espaço entre os itens */
-    gap: 20px; /* Espaçamento entre os itens */
-    margin-bottom: 30px;
-}
-
-.summary-item {
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex: 1; /* Garante que todos os itens terão o mesmo tamanho */
-}
-
-.summary-item strong {
-    display: block;
-    font-size: 16px;
-    color: #333;
-}
-
-.summary-item {
-    font-size: 14px;
-    color: #666;
-}
-
-
-.summary-item:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Tabela de Vendas */
-.sales-table {
-    margin-bottom: 30px;
-    animation: fadeInUp 1.5s ease-out;
-}
-
-.sales-table h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007BFF;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    font-size: 14px;
-}
-
-th {
-    background-color: #004d7a;;
-    color: white;
-}
-
-td {
-    background-color: #f9f9f9;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-td:hover {
-    background-color: #f1f1f1;
-    transform: translateY(-2px);
-}
-
-tr:nth-child(even) td {
-    background-color: #f2f8fc;
-}
-
-/* Adicionar Nova Venda */
-.add-sale {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: slideIn 1s ease-out;
-}
-
-.add-sale h2 {
-    margin-bottom: 20px;
-    color:#004d7a;
-}
-
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    transition: border 0.3s ease;
-}
-
-form input:focus {
-    background-color: #004d7a;;
-    outline: none;
-}
-
-button {
-    background-color: #004d7a;;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s;
-}
-
-button:hover {
-    background-color: #004d7a;;
-    transform: scale(1.05);
-}
-
-button:active {
-    background-color: #004d7a;;
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 14px;
-    color: #aaa;
-    animation: fadeIn 2s ease-out;
-}
-
-/* Animações */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 /* Media Queries for Responsiveness */
@@ -385,6 +164,7 @@ footer {
         height: 200px;
     }
 }
+/* Feedback Form */
 #feedback-wrapper {
     position: fixed;
     bottom: 20px;
@@ -398,11 +178,12 @@ footer {
 }
 
 #feedback-wrapper:hover #feedback-form-container {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #feedback-form-container {
-    display: none;
+    display: block;
     position: fixed;
     bottom: 80px;
     right: 20px;
@@ -414,7 +195,9 @@ footer {
     border-radius: 8px;
     text-align: center;
     z-index: 1000;
-    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, pointer-events 0s 0.3s;
 }
 
 #feedback-form-container h2 {
@@ -426,7 +209,7 @@ footer {
 #feedback-text {
     width: 100%;
     height: 120px;
-    padding: 10px;
+    padding: auto;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 1rem;
@@ -460,7 +243,6 @@ footer {
     background-color: #c82333;
 }
 
-/* Animações e transições */
 #feedback-form-container.show {
     display: block;
     opacity: 1;
@@ -470,6 +252,7 @@ footer {
     display: none;
     opacity: 0;
 }
+
 /* Responsividade */
 @media (max-width: 768px) {
     header nav .list-menu {
@@ -490,6 +273,104 @@ footer {
         padding: 1.5rem;
     }
 }
+
+
+/* conteudo tela de inicio */
+
+#financas {
+    position: relative;
+    padding: 50px 20px;
+    overflow: hidden;
+    background-color: #f9f9f9; /* Cor de fundo */
+    font-family: "Roboto serif", serif;
+}
+
+.parallax-container {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row; /* Organiza imagem e texto lado a lado */
+    justify-content: space-between; /* Espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px; /* Espaço entre imagem e texto */
+    padding: 20px;
+    flex-wrap: wrap; /* Permite que o conteúdo se reorganize em telas pequenas */
+}
+
+.text-content {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+    opacity: 0;
+    transform: translateX(-50px); /* Inicialmente, o texto estará deslocado para a esquerda */
+    animation: fadeInText 1s forwards; /* Animação para fazer o texto aparecer */
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(50px); /* Inicialmente, a imagem estará deslocada para a direita */
+    animation: fadeInImage 1s forwards; /* Animação para fazer a imagem aparecer */
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInImage {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+/* saiba mais */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+
 /* Estilos principais do rodapé */
 footer {
     background-color: #2C3E50;

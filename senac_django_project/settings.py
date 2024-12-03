@@ -43,9 +43,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 # ROOT_URLCONF especifica o arquivo principal de URLs que mapeia as requisições HTTP para as views.
 ROOT_URLCONF = 'senac_django_project.urls'
 
@@ -119,7 +116,10 @@ STATICFILES_DIRS = [
 ]
 
 # Configuração para servir os arquivos estáticos em produção
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Adicione suporte à compressão e cache dos arquivos estáticos
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Configurações para arquivos de mídia (arquivos carregados pelos usuários).
 MEDIA_URL = '/media/'  # URL para acessar os arquivos de mídia
